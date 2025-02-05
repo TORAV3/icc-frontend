@@ -1,0 +1,22 @@
+extends ../../layouts/layout
+
+block title
+  | Edit FAQ
+
+block csslink
+  link(rel='stylesheet' href='/icc/css/usaccess.css')
+
+block content
+  .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+    h6.fw-semibold.mb-0 Edit FAQ
+  #index-page
+
+block script
+  script(src='/icc/js/mfaq/formEdit.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+  script(src="//cdn.webix.com/components/edge/ckeditor5/ckeditor5.js" type="text/javascript")
+
+block js
+  script.
+    const token = "#{token}"
+    const id = "#{id}"

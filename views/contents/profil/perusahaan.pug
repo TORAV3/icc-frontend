@@ -1,0 +1,34 @@
+extends ../../layouts/layout
+
+block title
+  | Form Profil Perusahaan
+block csslink
+  link(rel='stylesheet' href='/icc/css/profilp.css')
+
+block content
+  .profsec
+    .profile-picture
+      img.profile-img(src="/icc/images/frame2.png" alt="Profile Picture")
+      //- button.btn.btn-prof(type="button")
+      //-   iconify-icon(icon="solar:camera-linear" width="20" height="20")
+    .profile-details
+      h5#companyNameHeader 
+      p#idHeader.text-muted 
+      p#statusHeader(style="font-size:17px;font-weight:600;") 
+    button.btn.btn-share(type="button" title="Share Profile")
+      iconify-icon(icon="solar:share-outline" width="20" height="20")
+  //- .title-details
+  //-   .row.mt-4
+  //-     .col-12
+  //-       p.lastupdate Last Update August 1
+
+  #index-page
+
+block script
+  script(src='/icc/js/mcompany/form.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+  script.
+    const token = "#{token}"
+    const id = "#{id}"

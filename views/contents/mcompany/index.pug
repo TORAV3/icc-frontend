@@ -1,0 +1,20 @@
+extends ../../layouts/layout
+
+block title
+    | Manajemen Perusahaan
+
+block csslink
+    link(rel='stylesheet' href='/icc/css/mcompany.css')
+
+block content
+    .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+        h6.fw-semibold.mb-0 Manajemen Perusahaan
+    #index-page
+
+block script
+    script(src='/icc/js/mcompany/index.js')
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+    script.
+        const token = "#{token}"

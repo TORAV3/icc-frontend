@@ -1,0 +1,22 @@
+extends ../../layouts/layout
+
+block title
+  | Monitoring
+
+block csslink
+  link(rel='stylesheet' href='/icc/css/pedulisesama.css')
+  link(rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css")
+
+block content
+  .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+    h6.fw-semibold.mb-0 Monitoring
+  #index-page
+block script
+  script(src='/icc/js/monitoring/index.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+  script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js")
+
+block js
+  script.
+    const token = "#{token}"
+    const id = "#{id}"

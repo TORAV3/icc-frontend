@@ -1,0 +1,20 @@
+extends ../../layouts/layout
+
+block title
+    | Manajemen Peserta
+
+block csslink
+    link(rel='stylesheet' href='/icc/css/muser.css')
+
+block content
+    .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+        h6.fw-semibold.mb-0 Manajemen Peserta
+    #index-page
+
+block script
+    script(src='/icc/js/muser/index.js')
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+    script.
+        const token = "#{token}"

@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ddf0ff;
+}
+
+section.auth {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.auth-left {
+  background: #ffdfe1;
+  display: flex;
+  overflow: hidden;
+  max-height: 730px; /* Hide any overflow if necessary */
+}
+
+.auth-left img {
+  width: 80%; /* Make the image span the entire width */
+  height: 80%; /* Make the image span the entire height */
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.auth-right {
+  background: #ffdfe1;
+}
+
+.auth-right img {
+  width: 40%; /* Make the image span the entire width */
+  margin-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+  .auth-right {
+    width: 50%;
+  }
+}
+
+.auth-description1 {
+  font-size: 35px;
+  font-weight: bold;
+  color: black;
+}
+
+.auth-description2 {
+  font-size: 15px;
+  color: black;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+#country-select {
+  width: 30%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+button.btn-primary {
+  width: 15%;
+  margin-left: 20px;
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #be1e2d;
+}
+
+button.btn-primary:hover {
+  background-color: #9b1724;
+}

@@ -1,0 +1,255 @@
+doctype html
+html(lang="en" data-theme="light")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title
+            block title
+        link(rel="icon" type="image/png" href="/icc/images/icclogo.png" sizes="16x16")
+        link(rel="stylesheet" href="/assets/css/remixicon.css")
+        link(rel="stylesheet" href="/assets/css/lib/bootstrap.min.css")
+        link(rel="stylesheet" href="/assets/css/style.css")
+        link(rel="stylesheet" href="/icc/css/layout.css")
+        link(rel="stylesheet" href="https://cdn.webix.com/edge/webix.css" type="text/css")
+
+        block csslink
+        block cssstyle
+    body
+        aside.sidebar
+            button.sidebar-close-btn(type="button")
+                iconify-icon(icon="radix-icons:cross-2")
+            div
+                a.sidebar-logo(href="/dashboard")
+                    div.text-center
+                        img.light-logo(src="/icc/images/logoicc.png" alt="site logo")
+
+                    img.dark-logo(src="/icc/images/logoicc.png" alt="site logo")
+                    img.logo-icon(src="/icc/images/logoicc.png" alt="site logo")
+            div.sidebar-menu-area
+                ul.sidebar-menu#sidebar-menu
+                    li
+                        a(href="/dashboard")
+                            iconify-icon.menu-icon(icon="solar:home-smile-angle-outline")
+                            span Dashboard
+
+                    if userData.type === 'perusahaan'
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:users-group-rounded-line-duotone")
+                        //-         span Posting Lowongan Kerja
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:case-minimalistic-outline")
+                        //-         span Manajemen Kandidat
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:map-point-outline")
+                        //-         span Monitoring Lokasi
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:settings-linear")
+                        //-         span Settings
+                        li
+                            a(href="/pedulisesama")
+                                iconify-icon.menu-icon(icon="solar:people-nearby-outline")
+                                span Peduli Sesama
+                        li
+                            a(href="/artikel")
+                                iconify-icon.menu-icon(icon="solar:file-text-linear")
+                                span Artikel
+                        li
+                            a(href="/faq")
+                                iconify-icon.menu-icon(icon="solar:umbrella-outline")
+                                span FAQ
+
+                    if userData.type === 'peserta'
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:users-group-rounded-line-duotone")
+                        //-         span Lowongan Kerja
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:star-line-duotone")
+                        //-         span Kelas Online
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:transfer-horizontal-bold")
+                        //-         span Layanan Penerjemahan
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:map-point-outline")
+                        //-         span Monitoring Lokasi
+                        li
+                            a(href="/pedulisesama")
+                                iconify-icon.menu-icon(icon="solar:people-nearby-outline")
+                                span Peduli Sesama
+                        li
+                            a(href="/artikel")
+                                iconify-icon.menu-icon(icon="solar:file-text-linear")
+                                span Artikel
+                        li
+                            a(href="/faq")
+                                iconify-icon.menu-icon(icon="solar:umbrella-outline")
+                                span FAQ
+                    
+                    if userData.type === 'internal'
+                        li
+                            a(href="/manajemen/peserta")
+                                iconify-icon.menu-icon(icon="solar:users-group-rounded-line-duotone")
+                                span Manajemen Peserta
+                        li
+                            a(href="/manajemen/perusahaan")
+                                iconify-icon.menu-icon(icon="solar:case-minimalistic-outline")
+                                span Manajemen Perusahaan
+                        li
+                            a(href="/manajemen/artikel")
+                                iconify-icon.menu-icon(icon="solar:file-text-linear")
+                                span Manajemen Artikel
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:chat-dots-outline")
+                        //-         span Pesan
+                        //- li
+                        //-     a(href="/monitoring")
+                        //-         iconify-icon.menu-icon(icon="solar:map-point-outline")
+                        //-         span Monitoring Lokasi
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:danger-circle-outline")
+                        //-         span Aduan
+                        //- li
+                        //-     a(href="javascript:void(0)")
+                        //-         iconify-icon.menu-icon(icon="solar:settings-linear")
+                        //-         span Settings
+                        li
+                            a(href="/manajemen/pedulisesama")
+                                iconify-icon.menu-icon(icon="solar:people-nearby-outline")
+                                span Manajemen Peduli Sesama
+                        li
+                            a(href="/manajemen/faq")
+                                iconify-icon.menu-icon(icon="solar:umbrella-outline")
+                                span Manajemen FAQ
+                        li
+                            a(href="/user-access")
+                                iconify-icon(icon="solar:shield-user-broken" class="menu-icon")
+                                span User Access
+                    
+        main.dashboard-main
+            .navbar-header
+                .row.align-items-center.justify-content-between
+                    .col-auto
+                        .d-flex.flex-wrap.align-items-center.gap-4
+                            button.sidebar-toggle(type="button")
+                                iconify-icon.icon.text-2xl.non-active(icon="heroicons:bars-3-solid")
+                                iconify-icon.icon.text-2xl.active(icon="iconoir:arrow-right")
+                            button.sidebar-mobile-toggle(type="button")
+                                iconify-icon.icon(icon="heroicons:bars-3-solid")
+                            //- form.navbar-search
+                            //-     input(type="text" name="search" placeholder="Search")
+                            //-     iconify-icon.icon(icon="ion:search-outline")
+                    .col-auto
+                        .d-flex.flex-wrap.align-items-center.gap-3
+                            //- button(type="button" data-theme-toggle class="w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center")
+
+                            //- div.dropdown
+                            //-     button.has-indicator.w-40-px.h-40-px.bg-neutral-200.rounded-circle.d-flex.justify-content-center.align-items-center(
+                            //-         type="button",
+                            //-         data-bs-toggle="dropdown"
+                            //-     )
+                            //-         iconify-icon.text-primary-light.text-xl(icon="iconoir:bell")
+                            //-     div.dropdown-menu.to-top.dropdown-menu-lg.p-0
+                            //-         div.m-16.py-12.px-16.radius-8.bg-primary-50.mb-16.d-flex.align-items-center.justify-content-between.gap-2
+                            //-             div
+                            //-                 h6.text-lg.text-primary-light.fw-semibold.mb-0 Notifications
+                            //-             span.text-primary-600.fw-semibold.text-lg.w-40-px.h-40-px.rounded-circle.bg-base.d-flex.justify-content-center.align-items-center 00
+
+
+                            //-         div.text-center.py-12.px-16
+                            //-             a.text-primary-600.fw-semibold.text-md(href="javascript:void(0)") See All Notification
+
+                            //- div.dropdown.d-none.d-sm-inline-block
+                            //-     button.has-indicator.w-40-px.h-40-px.bg-neutral-200.rounded-circle.d-flex.justify-content-center.align-items-center(
+                            //-         type="button",
+                            //-         data-bs-toggle="dropdown"
+                            //-     )
+                            //-         img(src="/assets/images/lang-flag.png" alt="image" class="w-24 h-24 object-fit-cover rounded-circle")
+                            //-     div.dropdown-menu.to-top.dropdown-menu-sm
+                            //-         div.py-12.px-16.radius-8.bg-primary-50.mb-16.d-flex.align-items-center.justify-content-between.gap-2
+                            //-             div
+                            //-                 h6.text-lg.text-primary-light.fw-semibold.mb-0 Choose Your Language
+                            //-         div.max-h-400-px.overflow-y-auto.scroll-sm.pe-8
+                            //-             div.form-check.style-check.d-flex.align-items-center.justify-content-between.mb-16
+                            //-                 label.form-check-label.line-height-1.fw-medium.text-secondary-light(for="english") 
+                            //-                     span.text-black.hover-bg-transparent.hover-text-primary.d-flex.align-items-center.gap-3
+                            //-                         img(src="/assets/images/flags/flag1.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0")
+                            //-                         span.text-md.fw-semibold.mb-0 English
+                            //-                 input.form-check-input(type="radio" name="crypto" id="english")
+                            //-             div.form-check.style-check.d-flex.align-items-center.justify-content-between.mb-16
+                            //-                 label.form-check-label.line-height-1.fw-medium.text-secondary-light(for="indonesia") 
+                            //-                     span.text-black.hover-bg-transparent.hover-text-primary.d-flex.align-items-center.gap-3
+                            //-                         img(src="/assets/images/flags/flag1.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0")
+                            //-                         span.text-md.fw-semibold.mb-0 Indonesia
+                            //-                 input.form-check-input(type="radio" name="crypto" id="indonesia")
+                            //-             div.form-check.style-check.d-flex.align-items-center.justify-content-between.mb-16
+                            //-                 label.form-check-label.line-height-1.fw-medium.text-secondary-light(for="japan") 
+                            //-                     span.text-black.hover-bg-transparent.hover-text-primary.d-flex.align-items-center.gap-3
+                            //-                         img(src="/assets/images/flags/flag2.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0")
+                            //-                         span.text-md.fw-semibold.mb-0 Japan
+                            //-                 input.form-check-input(type="radio" name="crypto" id="japan")
+                            div.dropdown
+                                button.d-flex.justify-content-center.align-items-center.rounded-circle(
+                                    type="button",
+                                    data-bs-toggle="dropdown"
+                                )
+                                    img.w-40-px.h-40-px.object-fit-cover.rounded-circle(
+                                        src="/icc/images/frame2.png",
+                                        alt="image"
+                                    )
+                                div.dropdown-menu.to-top.dropdown-menu-sm
+                                    div.py-12.px-16.radius-8.bg-primary-50.mb-16.d-flex.align-items-center.justify-content-between.gap-2
+                                        div
+                                            if userData.type === 'peserta'
+                                                h6.text-lg.text-primary-light.fw-semibold.mb-2 #{userData.userDetail.fullname}
+                                                span.text-secondary-light.fw-medium.text-sm #{userData.type.toUpperCase()}
+                                            if userData.type === 'perusahaan'
+                                                h6.text-lg.text-primary-light.fw-semibold.mb-2 #{userData.companyDetail.name_company}
+                                                span.text-secondary-light.fw-medium.text-sm #{userData.type.toUpperCase()}
+                                            if userData.type === 'internal'
+                                                h6.text-lg.text-primary-light.fw-semibold.mb-2 Admin
+                                                span.text-secondary-light.fw-medium.text-sm #{userData.type.toUpperCase()}
+                                    ul.to-top-list
+                                        if userData.type === 'peserta'
+                                            li
+                                                a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href=`/profil/user/${userData.id}`)
+                                                    iconify-icon.icon(
+                                                        icon="solar:user-circle-outline",
+                                                        class="text-xl"
+                                                    )
+                                                    | Profil Peserta
+                                        if userData.type === 'perusahaan'
+                                            a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href=`/profil/perusahaan/${userData.id}`)
+                                                    iconify-icon.icon(
+                                                        icon="solar:user-circle-outline",
+                                                        class="text-xl"
+                                                    )
+                                                    | Profil Perusahaan
+                                        li
+                                            a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href="javascript:void(0)" id="logoutBtn")
+                                                iconify-icon.icon(
+                                                    icon="lucide:power",
+                                                    class="text-xl"
+                                                )
+                                                | Log Out
+
+
+            .dashboard-main-body
+                block content
+        script(src="/assets/js/lib/jquery-3.7.1.min.js") 
+        script(src="/assets/js/lib/bootstrap.bundle.min.js") 
+        script(src="/assets/js/lib/iconify-icon.min.js") 
+        script(src="https://cdn.webix.com/edge/webix.js" type="text/javascript") 
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+        script(src="/assets/js/app.js") 
+        script(src="/icc/js/logout.js")
+        block script
+        block js

@@ -1,0 +1,30 @@
+doctype html
+html(lang="en", data-theme="light")
+  head
+    link(rel="icon" type="image/png" href="/icc/images/icclogo.png" sizes="16x16")
+    //- Bootstrap css
+    link(rel="stylesheet" href="/assets/css/lib/bootstrap.min.css")
+    //- main css
+    link(rel="stylesheet" href="/assets/css/style.css")
+    link(rel="stylesheet" href="https://cdn.webix.com/edge/webix.css" type="text/css")
+    link(rel="stylesheet" href="/icc/css/companyform.css")
+  body
+    .wrapper
+      .div.logo
+        img(src="/icc/images/logoicc.png", alt="Logo")
+      .div.hr
+        hr
+      .div.header
+        h6 Form Data Perusahaan
+      .div.form
+        #formContainer
+      .div.hr
+        hr
+
+
+    //- #formContainer
+    script(src="/assets/js/lib/jquery-3.7.1.min.js")
+    script(src="/assets/js/lib/bootstrap.bundle.min.js")
+    script(src="https://cdn.webix.com/edge/webix.js" type="text/javascript") 
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+    script(src="/icc/js/register/rcompany.js")

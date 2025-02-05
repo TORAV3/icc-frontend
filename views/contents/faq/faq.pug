@@ -1,0 +1,49 @@
+extends ../../layouts/layout
+
+block title
+  | FAQ
+
+block csslink
+    link(rel="stylesheet" href="/icc/css/faq.css")
+
+block content
+  .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+    h6.fw-semibold.mb-0 Frequently Asked Questions (FAQ)
+  #index-page
+  //- div.row.gy-4.content
+  //-   div.col-lg-6
+  //-     div.tab-content#v-pills-tabContent
+  //-       div.tab-pane.fade.show.active#v-pills-about-us(role="tabpanel" aria-labelledby="v-pills-about-us-tab" tabindex="0")
+  //-         div.accordion
+  //-           div.accordion-item
+  //-             h2.accordion-header
+  //-               button.accordion-button.text-primary-light.text-xl(type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne") Apa itu ICC?
+  //-             div#collapseOne.accordion-collapse.collapse
+  //-               div.accordion-body Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.
+  //-           div.accordion-item
+  //-             h2.accordion-header
+  //-               button.accordion-button.text-primary-light.text-xl.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo") Kenapa harus ICC?
+  //-             div#collapseTwo.accordion-collapse.collapse
+  //-               div.accordion-body Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.
+  //-   div.col-lg-6
+  //-     div.tab-content#v-pills-tabContent
+  //-       div.tab-pane.fade.show.active#v-pills-right-content(role="tabpanel" aria-labelledby="v-pills-about-us-tab" tabindex="0")
+  //-         div.accordion
+  //-           div.accordion-item
+  //-             h2.accordion-header
+  //-               button.accordion-button.text-primary-light.text-xl(type="button" data-bs-toggle="collapse" data-bs-target="#collapseRightOne" aria-expanded="false" aria-controls="collapseRightOne") Bagaimana ICC bekerja?
+  //-             div#collapseRightOne.accordion-collapse.collapse
+  //-               div.accordion-body This is the right content section where you can add more information or elements as needed.
+  //-           div.accordion-item
+  //-             h2.accordion-header
+  //-               button.accordion-button.text-primary-light.text-xl.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#collapseRightTwo" aria-expanded="false" aria-controls="collapseRightTwo") Kapan ICC didirikan?
+  //-             div#collapseRightTwo.accordion-collapse.collapse
+  //-               div.accordion-body Add additional descriptions or interactive elements here.
+
+block script
+  script(src='/icc/js/faq/faq.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+  script.
+    const token = "#{token}"

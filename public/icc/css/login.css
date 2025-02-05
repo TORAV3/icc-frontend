@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffe3dd;
+}
+
+.logo {
+  width: 75%;
+}
+
+.loginForm {
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.btnmasuk .webix_el_box button {
+  background-color: #be1e2d;
+  color: white;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.btndaftar .webix_el_box button {
+  background-color: transparent;
+  border: 1px solid #d5d7da;
+  color: #414651;
+  border-radius: 7px;
+  text-align: center;
+}
+
+section.auth {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.auth-left {
+  display: none;
+  background: #be1e2d;
+}
+
+@media (min-width: 992px) {
+  .auth-left {
+    display: block;
+    width: 50%; /* Adjust width as needed */
+  }
+}
+
+.auth-left .d-flex {
+  display: flex;
+  align-items: center;
+  margin-top: 200px;
+  margin-left: 70px;
+}
+
+.auth-left img:first-child {
+  width: 100px;
+}
+
+.auth-left img:last-child {
+  width: 180px;
+  height: auto;
+  margin-left: 15px;
+}
+
+.auth-left p {
+  text-align: left;
+  font-size: 16px;
+  color: white;
+  padding: 40px;
+  margin-left: 30px;
+}
+
+/* Auth Right */
+.auth-right {
+  background: #ffdfe1;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%; /* Full width by default */
+}
+
+@media (min-width: 992px) {
+  .auth-right {
+    width: 50%; /* Adjust width for larger screens */
+  }
+}
+
+.max-w-464-px {
+  max-width: 464px;
+  margin: 0 auto;
+  width: 100%;
+}

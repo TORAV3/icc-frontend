@@ -1,0 +1,32 @@
+/* Target the sidebar menu */
+#sidebar-menu li a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px; /* Adjust padding as needed */
+  transition: color 0.3s ease, background-color 0.3s ease;
+  margin-top: 5px;
+}
+
+/* Add hover and focus styles */
+#sidebar-menu li a:hover,
+#sidebar-menu li a::selection,
+#sidebar-menu li a:focus {
+  color: white; /* Change text color to red */
+  background-color: #be1e2d; /* Optional: Change background color for better visibility */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Ensure icons and spans inside the links align properly */
+#sidebar-menu li a .menu-icon {
+  margin-right: 10px; /* Add space between icon and text */
+}
+
+#sidebar-menu li a span {
+  font-size: 15px; /* Adjust font size */
+}
+
+img.light-logo,
+img.dark-logo {
+  margin-left: 15px;
+}
