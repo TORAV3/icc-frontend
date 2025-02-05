@@ -1,0 +1,209 @@
+.row-green {
+  background-color: #1bae3e;
+  color: white;
+}
+
+.row-blue {
+  background-color: #be1e2d;
+  color: white;
+}
+
+.row-purple {
+  background-color: #a620a6;
+  color: white;
+}
+
+.row-red {
+  background-color: #ba2b37;
+  color: white;
+}
+
+.row-orange {
+  background-color: #d78232;
+  color: white;
+}
+
+.pagerstyle {
+  text-align: right;
+}
+
+.pagerstyle .webix_pager_item,
+.pagerstyle .webix_pager_item:hover,
+.pagerstyle .webix_pager_item:focus {
+  background-color: #398bf1;
+  color: white;
+}
+
+.btnmodalsave .webix_el_box button,
+.btnmodalsave .webix_el_box button:hover,
+.btnmodalsave .webix_el_box button:focus {
+  background-color: #be1e2d;
+  color: white;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.title {
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+}
+
+.webix_all_tabs .webix_item_tab.webix_selected {
+  box-shadow: inset 0 -2px #be1e2d;
+}
+
+.webix_all_tabs .webix_item_tab.webix_selected:focus {
+  color: #be1e2d;
+  box-shadow: inset 0 -2px #be1e2d;
+}
+
+.webix_all_tabs .webix_item_tab,
+.webix_all_tabs .webix_item_tab:focus {
+  color: #be1e2d;
+}
+
+.webix_all_tabs .webix_tab_more_icon .webix_icon {
+  color: #be1e2d;
+}
+
+.tabstyle .webix_view.webix_control.webix_el_tabbar {
+  border-width: 0px !important;
+}
+
+.uploaderstyle .webix_el_box button {
+  background-color: transparent;
+  border: 1px solid rgb(207, 207, 207);
+}
+
+.marystyle {
+  margin-top: 20px;
+}
+
+.banner-image {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  margin: 0;
+}
+
+.profsec {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 150px auto 100px;
+  column-gap: 20px;
+  align-items: center;
+}
+
+.profile-picture {
+  width: 100%;
+  height: 150px;
+  position: relative;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #ddd;
+  object-fit: cover;
+}
+
+.profile-picture .btn.btn-prof {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  border-radius: 50%;
+  border: 1px solid rgb(233, 233, 233);
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: #be1e2d;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.profile-details h4 {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.profile-details p {
+  margin: 0;
+  font-size: 14px;
+  color: #083a50;
+  font-weight: bold;
+}
+
+.title-details {
+  justify-content: start;
+  text-align: left;
+}
+
+.title-details p.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 50px;
+}
+
+.title-details p.lastupdate {
+  font-size: 13px;
+  text-align: end;
+}
+
+.btn.btn-share {
+  background-color: #be1e2d;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  width: 40px;
+  height: 40px;
+  justify-self: self-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divider {
+  border: none;
+  border-top: 3px solid #be1e2d;
+}
+
+@media screen and (max-width: 768px) {
+  .profsec {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .profile-picture {
+    width: 130px;
+    height: 130px;
+  }
+
+  .btn.btn-share {
+    justify-self: self-start;
+  }
+
+  .title-details p.lastupdate {
+    text-align: start;
+  }
+}
+
+.btnupdown .webix_el_box button,
+.btnupdown .webix_el_box button:hover,
+.btnupdown .webix_el_box button:focus {
+  background-color: transparent;
+  padding-top: 7px;
+}
+
+.btnupdown .webix_el_box button .webix_icon {
+  color: #398bf1;
+}

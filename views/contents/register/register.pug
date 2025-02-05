@@ -1,0 +1,43 @@
+//- meta tags and other links
+doctype html
+html(lang="en", data-theme="light")
+  head
+    link(rel="icon" type="image/png" href="icc/images/icclogo.png" sizes="16x16")
+    //- remix icon font css
+    link(rel="stylesheet" href="assets/css/remixicon.css")
+    //- Bootstrap css
+    link(rel="stylesheet" href="assets/css/lib/bootstrap.min.css")
+    //- main css
+    link(rel="stylesheet" href="assets/css/style.css")
+    link(rel="stylesheet" href="https://cdn.webix.com/edge/webix.css" type="text/css")
+    link(rel="stylesheet" href="icc/css/register.css")
+  body
+    section.auth.bg-base.d-flex.flex-wrap
+      .auth-left.d-lg-block.d-none
+            img(src="icc/images/asset3.png", alt="Logo")
+
+      .auth-right.py-32.px-50.d-flex.flex-column.justify-content-center
+        .d-flex.align-items-center
+          img(src="icc/images/logoicc.png", alt="Logo" class="logo-left")
+        p.auth-description1
+          | Kebutuhan Aplikasi Monitoring untuk Aktivitas di Luar Negeri
+        p.auth-description2
+          | Tetap terhubung dan aman selama perjalanan luar negeri. Aplikasi monitoring ini memberikan pelacakan lokasi, notifikasi, dan laporan aktivitas.
+        form.auth-form
+        .form-group
+          .row
+            label(for="country-select")
+            select#country-select.form-control
+              option(value="" selected) Pilih Program
+              option(value="magang") Magang (Jisshusei)
+              option(value="pmi") Pekerja PMI (Tokutei Ginou)
+              option(value="perusahaan") Perusahaan Jepang
+            button.btn.btn-primary(type="button", onclick="redirectToForm()") Daftar
+
+    //- Scripts
+    script(src="assets/js/lib/jquery-3.7.1.min.js")
+    script(src="assets/js/lib/bootstrap.bundle.min.js")
+    script(src="assets/js/app.js")
+    script(src="https://cdn.webix.com/edge/webix.js" type="text/javascript") 
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+    script(src="/icc/js/register.js")

@@ -1,0 +1,37 @@
+extends ../../layouts/layout
+
+block title
+  | Form Profil Peserta
+block csslink
+  link(rel='stylesheet' href='/icc/css/profilu.css')
+
+block content
+  .banner-container
+    img.banner-image(src="/icc/images/frame1.png" alt="Banner")
+  hr.divider
+  .profsec
+    .profile-picture
+      img.profile-img(src="/icc/images/frame2.png" alt="Profile Picture")
+      //- button.btn.btn-prof(type="button")
+      //-   iconify-icon(icon="solar:camera-linear" width="20" height="20")
+    .profile-details
+      h5#fullNameHeader 
+      p#idHeader.text-muted 
+      p#statusHeader(style="font-size:17px;font-weight:600;") 
+    button.btn.btn-share(type="button" title="Share Profile")
+      iconify-icon(icon="solar:share-outline" width="20" height="20")
+  //- .title-details
+  //-   .row.mt-4
+  //-     .col-12
+  //-       p.lastupdate Last Update August 1
+
+  #index-page
+
+block script
+  script(src='/icc/js/muser/form.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+  script.
+    const token = "#{token}"
+    const id = "#{id}"

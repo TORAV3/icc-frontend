@@ -1,0 +1,35 @@
+//- meta tags and other links
+doctype html
+html(lang="en", data-theme="light")
+  head
+    link(rel="icon" type="image/png" href="/icc/images/icclogo.png" sizes="16x16")
+    title
+      | Login
+    //- remix icon font css
+    link(rel="stylesheet" href="assets/css/remixicon.css")
+    //- Bootstrap css
+    link(rel="stylesheet" href="assets/css/lib/bootstrap.min.css")
+    //- main css
+    link(rel="stylesheet" href="assets/css/style.css")
+    link(rel="stylesheet" href="https://cdn.webix.com/edge/webix.css" type="text/css")
+    link(rel="stylesheet" href="icc/css/login.css")
+  body
+    section.auth.bg-base.d-flex.flex-wrap
+      .auth-left.d-lg-block.d-none
+        .d-flex.align-items-center
+            img(src="icc/images/icclogo.png", alt="Logo" class="logo-left")
+            img(src="icc/images/icctext.png", alt="Logo" class="logo-right")
+        p.mt-4.auth-description
+            | ICC berperan penting dalam mendukung pekerja migran Indonesia di luar negeri, khususnya di Jepang. Melalui program-programnya, ICC menguatkan nasionalisme dan kebanggaan sebagai warga negara Indonesia dengan membina komunitas, mengadakan kegiatan budaya, serta memberikan edukasi tentang identitas dan budaya Indonesia.
+
+      .auth-right.py-32.px-24.d-flex.flex-column.justify-content-center
+        .max-w-464-px.mx-auto.w-100
+          #login-card
+          
+    //- Scripts
+    script(src="assets/js/lib/jquery-3.7.1.min.js")
+    script(src="assets/js/lib/bootstrap.bundle.min.js")
+    script(src="assets/js/app.js")
+    script(src="https://cdn.webix.com/edge/webix.js" type="text/javascript") 
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+    script(src="icc/js/login.js")

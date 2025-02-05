@@ -1,0 +1,20 @@
+extends ../../layouts/layout
+
+block title
+    | Manajemen Artikel
+
+block csslink
+    link(rel='stylesheet' href='/icc/css/martikel.css')
+
+block content
+    .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+        h6.fw-semibold.mb-0 Manajemen Artikel
+    #index-page
+
+block script
+    script(src='/icc/js/martikel/index.js')
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+    script.
+        const token = "#{token}"

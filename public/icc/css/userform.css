@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body {
+  background-color: white;
+}
+
+.wrapper {
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 100px;
+  background-color: white;
+}
+
+.div {
+  width: 100%; /* Ensure the children, including the <hr>, take full width */
+}
+
+.div.hr {
+  margin-top: 30px; /* Ensure the children, including the <hr>, take full width */
+  border: 1px solid red;
+  width: 100%;
+}
+
+.div.header {
+  margin-top: 30px; /* Ensure the children, including the <hr>, take full width */
+  margin-left: 15px;
+}
+
+.div.form {
+  margin-top: 10px;
+}
+
+.logo {
+  width: 75%;
+}
+
+.registerForm {
+  border: none;
+  border-radius: 10px;
+}
+
+.next {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end; /* Aligns the content at the end (bottom) */
+  height: 100%; /* Ensures the container takes full height */
+}
+
+.next .webix_el_box button,
+.next .webix_el_box button:hover,
+.next .webix_el_box button:focus {
+  background-color: #be1e2d;
+  color: white;
+  text-align: center;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.back {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end; /* Aligns the content at the end (bottom) */
+  height: 100%; /* Ensures the container takes full height */
+}
+
+.back .webix_el_box button,
+.back .webix_el_box button:hover,
+.back .webix_el_box button:focus {
+  background-color: cornflowerblue;
+  color: white;
+  text-align: center;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.uploadstyle {
+  border: none;
+}
+
+.uploadstyle .webix_template {
+  padding: 0;
+}
+
+.registerForm {
+  border: none;
+  border-radius: 10px;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-container input[type="text"] {
+  width: 100%;
+  padding-right: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.input-container .icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+  font-size: 16px;
+}
+
+.input-container input[type="file"] {
+  display: none;
+}
+
+.success-icon {
+  width: 25%;
+  height: 25%;
+  margin-bottom: 5px;
+}
+
+.custom-modal {
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.modal-content {
+  text-align: center;
+  padding: 10px;
+}
+
+.modal-template p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.ok .webix_el_box button,
+.ok .webix_el_box button:hover,
+.ok .webix_el_box button:focus {
+  background-color: #be1e2d;
+  color: white;
+  text-align: center;
+  border-radius: 7px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .wrapper-content {
+    width: 35%;
+  }
+
+  .logo {
+    width: 50%;
+  }
+}

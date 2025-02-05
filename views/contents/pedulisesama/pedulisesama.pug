@@ -1,0 +1,38 @@
+extends ../../layouts/layout
+
+block title
+  | Peduli Sesama
+
+block csslink
+  link(rel='stylesheet' href='/icc/css/pedulisesama.css')
+
+block content
+  .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+    h6.fw-semibold.mb-0 Peduli Sesama
+  .card-header.p-0.border-0
+    .responsive-padding-40-150.bg-light-pink
+      .row.gy-4.align-items-center
+        .col-xl-7
+          h6.mb-20 Langkah Menumbuhkan Rasa Peduli terhadap Sesama
+          p.mb-3.text-secondary-light.max-w-634-px.text-md
+            | Kepedulian terhadap sesama menjadi salah satu sikap yang menunjang kehidupan bersosialisasi. 
+            | Menerapkan sikap ini bisa mendorong setiap orang lebih bahagia dan berdaya bagi lingkungannya.
+          p.mb-0.text-secondary-light.max-w-634-px.text-md.mt-2
+            | Merangkum dari berbagai sumber, Human Initiative memberikan langkah-langkah untuk menumbuhkan rasa peduli terhadap sesama. 
+            | Yuk, simak di bawah ini.
+        .col-xl-5.d-xl-block.d-none
+          img(src="icc/images/pedulisesama.png" alt="")
+  #index-page
+  //- .row  
+  //-   .col-lg-8 
+  //-     #left-container
+  //-   .col-lg-4
+  //-     #right-container
+block script
+  script(src='/icc/js/pedulisesama/index.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+  script.
+    const token = "#{token}"
+    const id = "#{id}"

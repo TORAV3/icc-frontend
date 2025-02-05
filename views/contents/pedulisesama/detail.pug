@@ -1,0 +1,25 @@
+extends ../../layouts/layout
+
+block title
+  | Peduli Sesama
+
+block csslink
+  link(rel='stylesheet' href='/icc/css/dpedulisesama.css')
+
+block content
+  .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+    h6.fw-semibold.mb-0 Peduli Sesama
+  #index-page
+  //- .row  
+  //-   .col-lg-8 
+  //-     #left-container
+  //-   .col-lg-4
+  //-     #right-container
+block script
+  script(src='/icc/js/pedulisesama/detail.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+  script.
+    const token = "#{token}"
+    const id = "#{id}"
