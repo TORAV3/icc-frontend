@@ -6,60 +6,74 @@ function loadUserDetailData() {
       },
     })
     .then((res) => {
+      const userDetail = res.data.data.userDetail;
       document.getElementById("fullNameHeader").textContent =
-        res.data.data.userDetail.fullname;
-      document.getElementById("idHeader").textContent =
-        "ID: " + res.data.data.id;
+        userDetail.fullname;
+      document.getElementById("idHeader").textContent =  res.data.data.userDetail.code;
       document.getElementById("statusHeader").textContent =
-        res.data.data.status === "approve" ? "Peserta ISO" : "Peserta";
-      // const profImage = document.querySelector(".profile-img");
+      res.data.data.userDetail.programType.toUpperCase();
 
-      $$("id").setValue(id);
+      // Populate the form fields with data
+      $$("id").setValue(userDetail.id);
       $$("token").setValue(token);
-      $$("fullname").setValue(res.data.data.userDetail.fullname); // Set Fullname
+      $$("fullname").setValue(userDetail.fullname); // Set Fullname
       $$("email").setValue(res.data.data.email); // Set Email
-      $$("phone").setValue(res.data.data.userDetail.phone); // Set Phone
-      $$("program_type").setValue(
-        res.data.data.userDetail.program_type.toUpperCase()
-      );
-      $$("address_indo").setValue(res.data.data.userDetail.address_indo); // Set Address Indo
-      $$("address_japan").setValue(res.data.data.userDetail.address_japan); // Set Address Japan
-      $$("company_name").setValue(res.data.data.userDetail.company_name); // Set Company Name
-      $$("address_company").setValue(res.data.data.userDetail.address_company); // Set Company Address
-      $$("association_name").setValue(
-        res.data.data.userDetail.association_name
-      ); // Set Association Name
-      $$("address_association").setValue(
-        res.data.data.userDetail.address_association
-      ); // Set Association Address
-      $$("career_history").setValue(res.data.data.userDetail.career_history); // Set Career History
-      $$("work_field").setValue(res.data.data.userDetail.work_field); // Set Work Field
-      $$("interest_field").setValue(res.data.data.userDetail.interest_field); // Set Interest Field
-      $$("rejected").setValue(res.data.data.userDetail.rejected); // Set Interest Field
-      $$("rejected_detail").setValue(res.data.data.userDetail.rejected_detail);
-      $$("contract_period").setValue(res.data.data.userDetail.contract_period);
+      $$("phone").setValue(userDetail.phone); // Set Phone
+      $$("nik").setValue(userDetail.nik); // Set NIK
+      $$("gender").setValue(userDetail.gender); // Set Gender
+      $$("height").setValue(userDetail.height); // Set Height
+      $$("weight").setValue(userDetail.weight); // Set Weight
+      $$("birthplace").setValue(userDetail.birthplace); // Set Birthplace
+      $$("birthdate").setValue(userDetail.birthdate); // Set Birthdate
+      $$("religion").setValue(userDetail.religion); // Set Religion
+      $$("lastedu").setValue(userDetail.lastedu); // Set Last Education
+      $$("trainbef").setValue(userDetail.trainbef); // Set Previous Training
+      $$("city").setValue(userDetail.city); // Set City
+      $$("address").setValue(userDetail.address); // Set Address
+      $$("mynumber").setValue(userDetail.mynumber); // Set Address
 
-      // Optionally set other fields that you may want to display
-      $$("upload_file").setValue(res.data.data.userDetail.upload_file); // Set KTP Scan
-      $$("ktp").setValue(res.data.data.userDetail.ktp); // Set KTP Scan
-      $$("zairyoukado").setValue(res.data.data.userDetail.zairyoukado); // Set Zairyoukado Scan
-      $$("ijazah").setValue(res.data.data.userDetail.ijazah); // Set Ijazah
-      $$("certificate").setValue(res.data.data.userDetail.certificate); // Set Certificate
-      $$("certificate_field").setValue(
-        res.data.data.userDetail.certificate_field
-      ); // Set Certificate Field
-      $$("cv").setValue(res.data.data.userDetail.cv); // Set CV Document
-      $$("immigration_passport").setValue(
-        res.data.data.userDetail.immigration_passport
-      ); // Set Immigration Passport
-      $$("latest_passport").setValue(res.data.data.userDetail.latest_passport); // Set Latest Passport
-      $$("photograph").setValue(res.data.data.userDetail.photograph); // Set Profile Picture
+      $$("dadName").setValue(userDetail.dadName); // Set Father's Name
+      $$("dadPhone").setValue(userDetail.dadPhone); // Set Father's Phone
+      $$("dadAddress").setValue(userDetail.dadAddress); // Set Father's Address
+      $$("momName").setValue(userDetail.momName); // Set Mother's Name
+      $$("momPhone").setValue(userDetail.momPhone); // Set Mother's Phone
+      $$("momAddress").setValue(userDetail.momAddress); // Set Mother's Address
+      $$("kinsmanName").setValue(userDetail.kinsmanName); // Set Kinsman's Name
+      $$("kinsmanPhone").setValue(userDetail.kinsmanPhone); // Set Kinsman's Phone
+      $$("kinsmanAddress").setValue(userDetail.kinsmanAddress); // Set Kinsman's Address
+
+      $$("companyName").setValue(userDetail.companyName); // Set Company Name
+      $$("companyAddress").setValue(userDetail.companyAddress); // Set Company Address
+      $$("companyCity").setValue(userDetail.companyCity); // Set Company City
+
+      // Set document scan fields
+      $$("pasFoto").setValue(userDetail.pasFoto); // Set Pas Foto
+      $$("fullBodyFoto").setValue(userDetail.fullBodyFoto); // Set Full Body Photo
+      $$("ktp").setValue(userDetail.ktp); // Set KTP
+      $$("kk").setValue(userDetail.kk); // Set KK
+      $$("akta").setValue(userDetail.akta); // Set Akta
+      $$("ijazah").setValue(userDetail.ijazah); // Set Ijazah
+      $$("sks").setValue(userDetail.sks); // Set SKS
+      $$("vaksin").setValue(userDetail.vaksin); // Set Vaksin
+      $$("sertifikat").setValue(userDetail.sertifikat); // Set Sertifikat
+      $$("paspor").setValue(userDetail.paspor); // Set Paspor
+      $$("senmonkyuu").setValue(userDetail.senmonkyuu); // Set Senmonkyuu
+      $$("jftest").setValue(userDetail.jftest); // Set JFT Test
+      $$("capimigrasi").setValue(userDetail.capimigrasi); // Set Capimigrasi
+      $$("ktpJepang").setValue(userDetail.ktpJepang); // Set KTP Jepang
+      $$("epmi").setValue(userDetail.epmi); // Set EPMI
+
+      console.log('Form data successfully loaded.');
     })
     .catch((err) => {
       console.log(err);
-      webix.message({ type: "error", text: err.response.data.data });
+      webix.message({
+        type: "error",
+        text: err.response ? err.response.data.data : "An error occurred",
+      });
     });
 }
+
 
 var tabcells = [
   {
@@ -102,20 +116,17 @@ var tabcells = [
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
-                        },
-                        {
-                          width: 50,
+                          
                         },
                         {
                           view: "text",
                           name: "email",
                           id: "email",
-                          label: "Alamat Email",
+                          label: "Email",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
                       ],
                     },
@@ -132,24 +143,21 @@ var tabcells = [
                           view: "text",
                           name: "phone",
                           id: "phone",
-                          label: "Nomor kontak saat ini",
+                          label: "No. HP",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
-                        },
-                        {
-                          width: 50,
+                          
                         },
                         {
                           view: "text",
-                          name: "program_type",
-                          id: "program_type",
-                          label: "Tipe Program",
+                          name: "nik",
+                          id: "nik",
+                          label: "No. NIK",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
                       ],
                     },
@@ -163,29 +171,34 @@ var tabcells = [
                       responsive: "row3",
                       cols: [
                         {
-                          view: "textarea",
-                          name: "address_indo",
-                          id: "address_indo",
-                          label: "Alamat Indonesia",
+                          view: "combo",
+                          label: "Pernah mengikuti pelatihan sebelumnya?",
+                          value: "",
                           labelPosition: "top",
-                          required: true,
-                          height: 100,
+                          options: [
+                            { id: "0", value: "Tidak" },
+                            { id: "1", value: "Ya" },
+                          ],
                           minWidth: 300,
-                          readonly: true,
+                          name: "trainbef",
+                          id: "trainbef",
+                          required: true,
+                          
                         },
                         {
-                          width: 50,
-                        },
-                        {
-                          view: "textarea",
-                          name: "address_japan",
-                          id: "address_japan",
-                          label: "Alamat Jepang",
+                          view: "combo",
+                          label: "Jenis Kelamin",
+                          value: "",
                           labelPosition: "top",
-                          required: true,
-                          height: 100,
+                          options: [
+                            { id: "p", value: "Perempuan" },
+                            { id: "l", value: "Laki-Laki" },
+                          ],
                           minWidth: 300,
-                          readonly: true,
+                          name: "gender",
+                          id: "gender",
+                          required: true,
+                          
                         },
                       ],
                     },
@@ -200,26 +213,23 @@ var tabcells = [
                       cols: [
                         {
                           view: "text",
-                          name: "company_name",
-                          id: "company_name",
-                          label: "Nama Perusahaan",
+                          name: "height",
+                          id: "height",
+                          label: "Tinggi Badan",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
-                        },
-                        {
-                          width: 50,
+                          
                         },
                         {
                           view: "text",
-                          name: "association_name",
-                          id: "association_name",
-                          label: "Nama Asosiasi/TSK",
+                          name: "weight",
+                          id: "weight",
+                          label: "Berat Badan",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
                       ],
                     },
@@ -233,29 +243,24 @@ var tabcells = [
                       responsive: "row5",
                       cols: [
                         {
-                          view: "textarea",
-                          name: "address_company",
-                          id: "address_company",
-                          label: "Alamat Perusahaan",
-                          labelPosition: "top",
-                          required: true,
-                          height: 100,
-                          minWidth: 300,
-                          readonly: true,
-                        },
-                        {
-                          width: 50,
-                        },
-                        {
-                          view: "textarea",
-                          name: "address_association",
-                          id: "address_association",
-                          label: "Alamat Asosiasi",
+                          view: "text",
+                          name: "birthplace",
+                          id: "birthplace",
+                          label: "Tempat Lahir",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          height: 100,
-                          readonly: true,
+                          
+                        },
+                        {
+                          view: "datepicker",
+                          name: "birthdate",
+                          id: "birthdate",
+                          label: "Tanggal Lahir",
+                          labelPosition: "top",
+                          minWidth: 300,
+                          required: true,
+                          
                         },
                       ],
                     },
@@ -270,31 +275,42 @@ var tabcells = [
                       cols: [
                         {
                           view: "combo",
-                          name: "rejected",
-                          labelWidth: 120,
-                          id: "rejected",
-                          label: "Pernah di tolak pengajuan surat izin tinggal",
+                          label: "Agama",
+                          value: "",
                           labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
                           options: [
-                            { id: "1", value: "PERNAH" },
-                            { id: "0", value: "TIDAK PERNAH" },
+                            { id: "islam", value: "Islam" },
+                            { id: "katolik", value: "Katolik" },
+                            { id: "protestan", value: "Protestan" },
+                            { id: "hindu", value: "Hindu" },
+                            { id: "buddha", value: "Buddha" },
+                            { id: "konghucu", value: "Konghucu" },
                           ],
-                        },
-                        {
-                          width: 50,
-                        },
-                        {
-                          view: "text",
-                          name: "work_field",
-                          id: "work_field",
-                          label: "Bidang Kerja saat ini",
-                          labelPosition: "top",
-                          required: true,
                           minWidth: 300,
-                          readonly: true,
+                          name: "religion",
+                          id: "religion",
+                          required: true,
+                          
+                        },
+                        {
+                          view: "combo",
+                          label: "Pendidikan Terakhir",
+                          value: "",
+                          labelPosition: "top",
+                          options: [
+                            { id: "sd", value: "SD" },
+                            { id: "smp", value: "SMP" },
+                            { id: "sma", value: "SMA" },
+                            { id: "d3", value: "D3" },
+                            { id: "s1", value: "S1" },
+                            { id: "s2", value: "S2" },
+                            { id: "s3", value: "S3" },
+                          ],
+                          minWidth: 300,
+                          name: "lastedu",
+                          id: "lastedu",
+                          required: true,
+                          
                         },
                       ],
                     },
@@ -308,29 +324,24 @@ var tabcells = [
                       responsive: "row7",
                       cols: [
                         {
-                          view: "textarea",
-                          name: "rejected_detail",
-                          id: "rejected_detail",
-                          label: "Apabila pernah, berapa kali dan kapan",
+                          view: "text",
+                          name: "mynumber",
+                          id: "mynumber",
+                          label: "My Number",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          height: 100,
-                          readonly: true,
+                          
                         },
                         {
-                          width: 50,
-                        },
-                        {
-                          view: "textarea",
-                          name: "career_history",
-                          id: "career_history",
-                          label: "Riwayat Masuk kerja ke Jepang",
+                          view: "text",
+                          name: "city",
+                          id: "city",
+                          label: "Kota/Kabupaten",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          height: 100,
-                          readonly: true,
+                          
                         },
                       ],
                     },
@@ -344,28 +355,91 @@ var tabcells = [
                       responsive: "row8",
                       cols: [
                         {
-                          view: "text",
-                          name: "interest_field",
-                          id: "interest_field",
-                          label: "Bidang Kerja yang diminati",
+                          view: "textarea",
+                          id: "address",
+                          name: "address",
+                          height: 120,
+                          label: "Alamat",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
-                        {
-                          width: 50,
-                        },
+                        { minWidth: 300 },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    header: "Data Perusahaan",
+    width: 150,
+    body: {
+      id: "formre2",
+      rows: [
+        { height: 20 },
+        {
+          responsive: "formres2",
+          cols: [
+            {
+              margin: 10,
+              rows: [
+                {
+                  id: "row9",
+                  margin: 10,
+                  rows: [
+                    {
+                      responsive: "row9",
+                      cols: [
                         {
                           view: "text",
-                          name: "contract_period",
-                          id: "contract_period",
-                          label: "Masa Kontrak (Dari Kapan sampai Kapan)",
+                          name: "companyName",
+                          id: "companyName",
+                          label: "Nama Perusahaan",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
+                        {
+                          view: "text",
+                          name: "companyCity",
+                          id: "companyCity",
+                          label: "Kota/Prefektur",
+                          labelPosition: "top",
+                          required: true,
+                          minWidth: 300,
+                          
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "row10",
+                  margin: 10,
+                  rows: [
+                    {
+                      responsive: "row10",
+                      cols: [
+                        {
+                          view: "textarea",
+                          id: "companyAddress",
+                          name: "companyAddress",
+                          height: 120,
+                          label: "Alamat Perusahaan",
+                          labelPosition: "top",
+                          required: true,
+                          minWidth: 300,
+                          
+                        },
+                        { minWidth: 300 },
                       ],
                     },
                   ],
@@ -391,105 +465,6 @@ var tabcells = [
               margin: 10,
               rows: [
                 {
-                  id: "row9",
-                  margin: 10,
-                  rows: [
-                    {
-                      responsive: "row9",
-                      cols: [
-                        {
-                          view: "text",
-                          name: "upload_file",
-                          id: "upload_file",
-                          label:
-                            "Upload Berkas (Untuk Peserta Non ISO Jepang/LPPR)",
-                          labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
-                        },
-                        { width: 50 },
-                        {
-                          view: "text",
-                          name: "ktp",
-                          id: "ktp",
-                          label: "KTP Indonesia",
-                          labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  id: "row10",
-                  margin: 10,
-                  rows: [
-                    {
-                      responsive: "row10",
-                      cols: [
-                        {
-                          view: "text",
-                          name: "zairyoukado",
-                          id: "zairyoukado",
-                          label:
-                            "Zairyoukado (2 halaman file PDF, depan dan belakang)",
-                          labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
-                        },
-                        { width: 50 },
-                        {
-                          view: "text",
-                          name: "ijazah",
-                          id: "ijazah",
-                          label: "Ijazah Terakhir",
-                          labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  id: "row11",
-                  margin: 10,
-                  rows: [
-                    {
-                      responsive: "row11",
-                      cols: [
-                        {
-                          view: "text",
-                          name: "certificate",
-                          id: "certificate",
-                          label:
-                            "Sertifikat 3 kyuu/jftest/hyoukachosho/JLPT(diatas N5) *",
-                          labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
-                        },
-                        { width: 50 },
-                        {
-                          view: "text",
-                          name: "certificate_field",
-                          id: "certificate_field",
-                          label: "Sertifikat Skill Bidang",
-                          labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
                   id: "row12",
                   margin: 10,
                   rows: [
@@ -497,25 +472,94 @@ var tabcells = [
                       responsive: "row12",
                       cols: [
                         {
-                          view: "text",
-                          name: "cv",
-                          id: "cv",
-                          label: "CV",
-                          labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "pasFoto",
+                                  id: "pasFoto",
+                                  label: "Pas Foto 3x4",
+                                  labelPosition: "top",
+                                  required: true,
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile(
+                                          "pasFoto",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
                         },
-                        { width: 50 },
                         {
-                          view: "text",
-                          name: "immigration_passport",
-                          id: "immigration_passport",
-                          label: "Bagian Paspor yg ada cap imigrasinya *",
-                          labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "fullBodyFoto",
+                                  id: "fullBodyFoto",
+                                  label: "Foto Full Body",
+                                  labelPosition: "top",
+                                  required: true,
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile(
+                                          "fullBodyFoto",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
                         },
                       ],
                     },
@@ -529,26 +573,686 @@ var tabcells = [
                       responsive: "row13",
                       cols: [
                         {
-                          view: "text",
-                          name: "latest_passport",
-                          id: "latest_passport",
-                          label: "Paspor Baru (Paspor yang masih berlaku)",
-                          labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "ktp",
+                                  id: "ktp",
+                                  label: "KTP",
+                                  labelPosition: "top",
+                                  required: true,
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile(
+                                          "ktp",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
                         },
-                        { width: 50 },
                         {
-                          view: "text",
-                          name: "photograph",
-                          id: "photograph",
-                          label:
-                            "Pas foto terbaru 3 bulan terakhir (Background Putih uk 3x4)",
-                          labelPosition: "top",
-                          required: true,
-                          minWidth: 300,
-                          readonly: true,
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "kk",
+                                  id: "kk",
+                                  label: "Kartu Keluarga",
+                                  labelPosition: "top",
+                                  required: true,
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile("kk", fullName, id, token);
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "row14",
+                  margin: 10,
+                  rows: [
+                    {
+                      responsive: "row14",
+                      cols: [
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "akta",
+                                  id: "akta",
+                                  label: "Akta Kelahiran",
+                                  labelPosition: "top",
+                                  required: true,
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile(
+                                          "akta",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "ijazah",
+                                  id: "ijazah",
+                                  label: "Ijazah",
+                                  labelPosition: "top",
+                                  required: true,
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile(
+                                          "ijazah",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "row15",
+                  margin: 10,
+                  rows: [
+                    {
+                      responsive: "row15",
+                      cols: [
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "sks",
+                                  id: "sks",
+                                  label: "Surat Keterangan Sehat",
+                                  labelPosition: "top",
+                                  required: true,
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+                        
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+                        
+                                        downloadFile(
+                                          "sks",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "vaksin",
+                                  id: "vaksin",
+                                  label: "Sertifikat Vaksin",
+                                  labelPosition: "top",
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile(
+                                          "vaksin",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "row16",
+                  margin: 10,
+                  rows: [
+                    {
+                      responsive: "row16",
+                      cols: [
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "sertifikat",
+                                  id: "sertifikat",
+                                  label: "Sertifikat Skill",
+                                  labelPosition: "top",
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+                        
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+                        
+                                        downloadFile(
+                                          "sertifikat",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "paspor",
+                                  id: "paspor",
+                                  label: "Paspor",
+                                  labelPosition: "top",
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile(
+                                          "paspor",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "row17",
+                  margin: 10,
+                  rows: [
+                    {
+                      responsive: "row17",
+                      cols: [
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "senmonkyuu",
+                                  id: "senmonkyuu",
+                                  label: "Senmonkyuu",
+                                  labelPosition: "top",
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+                        
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+                        
+                                        downloadFile(
+                                          "senmonkyuu",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "hyokachosho",
+                                  id: "hyokachosho",
+                                  label: "Hyokachosho",
+                                  labelPosition: "top",
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile(
+                                          "hyokachosho",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "row18",
+                  margin: 10,
+                  rows: [
+                    {
+                      responsive: "row18",
+                      cols: [
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "jftest",
+                                  id: "jftest",
+                                  label: "JFTEST",
+                                  labelPosition: "top",
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+                        
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+                        
+                                        downloadFile(
+                                          "jftest",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "capimigrasi",
+                                  id: "capimigrasi",
+                                  label: "Cap Imigrasi (Masuk)",
+                                  labelPosition: "top",
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile(
+                                          "hyokachosho",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "row19",
+                  margin: 10,
+                  rows: [
+                    {
+                      responsive: "row19",
+                      cols: [
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "ktpJepang",
+                                  id: "ktpJepang",
+                                  label: "KTP Jepang",
+                                  labelPosition: "top",
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+                        
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+                        
+                                        downloadFile(
+                                          "ktpJepang",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        {
+                          rows: [
+                            {
+                              cols: [
+                                {
+                                  view: "text",
+                                  name: "epmi",
+                                  id: "epmi",
+                                  label: "E-PMI",
+                                  labelPosition: "top",
+                                  minWidth: 300,
+                                  
+                                },
+                                {
+                                  rows: [
+                                    {},
+                                    {
+                                      view: "button",
+                                      css: "btnupdown",
+                                      width: 30,
+                                      label:
+                                        "<span class='webix_icon' style='text-align:center;'><iconify-icon icon='solar:cloud-download-outline'></iconify-icon></span>",
+                                      click: function () {
+                                        const form = $$("userForm");
+
+                                        const id = form.getValues().id;
+                                        const token = form.getValues().token;
+                                        const fullName =
+                                          form.getValues().fullname;
+
+                                        downloadFile(
+                                          "epmi",
+                                          fullName,
+                                          id,
+                                          token
+                                        );
+                                      },
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
                         },
                       ],
                     },
@@ -561,131 +1265,130 @@ var tabcells = [
       ],
     },
   },
-
-  //   {
-  //     header: "Data Orang Tua",
-  //     width: 150,
-  //     body: {
-  //       id: "formres3",
-  //       margin: 10,
-  //       css: "marystyle",
-  //       rows: [
-  //         {
-  //           responsive: "formres3",
-  //           cols: [
-  //             {
-  //               margin: 10,
-  //               rows: [
-  //                 {
-  //                   view: "text",
-  //                   name: "dadName",
-  //                   id: "dadName",
-  //                   label: "Nama Ayah",
-  //                   labelPosition: "top",
-  //                   required: true,
-  //                   minWidth: 300,
-  //                   readonly: true,
-  //                 },
-  //                 {
-  //                   view: "text",
-  //                   name: "dadPhone",
-  //                   id: "dadPhone",
-  //                   label: "No. HP Ayah",
-  //                   labelPosition: "top",
-  //                   required: true,
-  //                   minWidth: 300,
-  //                   readonly: true,
-  //                 },
-  //                 {
-  //                   view: "textarea",
-  //                   id: "dadAddress",
-  //                   name: "dadAddress",
-  //                   height: 120,
-  //                   label: "Alamat Ayah",
-  //                   labelPosition: "top",
-  //                   required: true,
-  //                   minWidth: 300,
-  //                   readonly: true,
-  //                 },
-  //               ],
-  //             },
-  //             {
-  //               margin: 10,
-  //               rows: [
-  //                 {
-  //                   view: "text",
-  //                   name: "momName",
-  //                   id: "momName",
-  //                   label: "Nama Ibu",
-  //                   labelPosition: "top",
-  //                   required: true,
-  //                   minWidth: 300,
-  //                   readonly: true,
-  //                 },
-  //                 {
-  //                   view: "text",
-  //                   name: "momPhone",
-  //                   id: "momPhone",
-  //                   label: "No. HP Ibu",
-  //                   labelPosition: "top",
-  //                   required: true,
-  //                   minWidth: 300,
-  //                   readonly: true,
-  //                 },
-  //                 {
-  //                   view: "textarea",
-  //                   id: "momAddress",
-  //                   name: "momAddress",
-  //                   height: 120,
-  //                   label: "Alamat Ibu",
-  //                   labelPosition: "top",
-  //                   required: true,
-  //                   minWidth: 300,
-  //                   readonly: true,
-  //                 },
-  //               ],
-  //             },
-  //             {
-  //               margin: 10,
-  //               rows: [
-  //                 {
-  //                   view: "text",
-  //                   name: "kinsmanName",
-  //                   id: "kinsmanName",
-  //                   label: "Nama Kerabat",
-  //                   labelPosition: "top",
-  //                   required: true,
-  //                   minWidth: 300,
-  //                   readonly: true,
-  //                 },
-  //                 {
-  //                   view: "text",
-  //                   name: "kinsmanPhone",
-  //                   id: "kinsmanPhone",
-  //                   label: "No. HP Kerabat",
-  //                   labelPosition: "top",
-  //                   required: true,
-  //                   minWidth: 300,
-  //                   readonly: true,
-  //                 },
-  //                 {
-  //                   view: "textarea",
-  //                   id: "kinsmanAddress",
-  //                   name: "kinsmanAddress",
-  //                   height: 120,
-  //                   label: "Alamat Kerabat",
-  //                   labelPosition: "top",
-  //                   required: true,
-  //                   minWidth: 300,
-  //                   readonly: true,
-  //                 },
-  //               ],
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //   },
+  {
+    header: "Data Orang Tua",
+    width: 150,
+    body: {
+      id: "formres3",
+      margin: 10,
+      css: "marystyle",
+      rows: [
+        {
+          responsive: "formres3",
+          cols: [
+            {
+              margin: 10,
+              rows: [
+                {
+                  view: "text",
+                  name: "dadName",
+                  id: "dadName",
+                  label: "Nama Ayah",
+                  labelPosition: "top",
+                  required: true,
+                  minWidth: 300,
+                  
+                },
+                {
+                  view: "text",
+                  name: "dadPhone",
+                  id: "dadPhone",
+                  label: "No. HP Ayah",
+                  labelPosition: "top",
+                  required: true,
+                  minWidth: 300,
+                  
+                },
+                {
+                  view: "textarea",
+                  id: "dadAddress",
+                  name: "dadAddress",
+                  height: 120,
+                  label: "Alamat Ayah",
+                  labelPosition: "top",
+                  required: true,
+                  minWidth: 300,
+                  
+                },
+              ],
+            },
+            {
+              margin: 10,
+              rows: [
+                {
+                  view: "text",
+                  name: "momName",
+                  id: "momName",
+                  label: "Nama Ibu",
+                  labelPosition: "top",
+                  required: true,
+                  minWidth: 300,
+                  
+                },
+                {
+                  view: "text",
+                  name: "momPhone",
+                  id: "momPhone",
+                  label: "No. HP Ibu",
+                  labelPosition: "top",
+                  required: true,
+                  minWidth: 300,
+                  
+                },
+                {
+                  view: "textarea",
+                  id: "momAddress",
+                  name: "momAddress",
+                  height: 120,
+                  label: "Alamat Ibu",
+                  labelPosition: "top",
+                  required: true,
+                  minWidth: 300,
+                  
+                },
+              ],
+            },
+            {
+              margin: 10,
+              rows: [
+                {
+                  view: "text",
+                  name: "kinsmanName",
+                  id: "kinsmanName",
+                  label: "Nama Kerabat",
+                  labelPosition: "top",
+                  required: true,
+                  minWidth: 300,
+                  
+                },
+                {
+                  view: "text",
+                  name: "kinsmanPhone",
+                  id: "kinsmanPhone",
+                  label: "No. HP Kerabat",
+                  labelPosition: "top",
+                  required: true,
+                  minWidth: 300,
+                  
+                },
+                {
+                  view: "textarea",
+                  id: "kinsmanAddress",
+                  name: "kinsmanAddress",
+                  height: 120,
+                  label: "Alamat Kerabat",
+                  labelPosition: "top",
+                  required: true,
+                  minWidth: 300,
+                  
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  },
 ];
 
 var tab = {

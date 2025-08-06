@@ -1,0 +1,49 @@
+.card-container {
+  padding: 20px;
+  margin: 10px 0;
+  background-color: #e32020;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.webix_secondary .webix_button {
+  background: #be1e2d;
+  color: white;
+  border-radius: 10px;
+}
+
+.webix_secondary .webix_button:hover,
+.webix_secondary .webix_button:focus {
+  background: #be1e2d;
+}
+
+.dataview-peserta {
+  border: none;
+  background: transparent;
+}
+
+.dataview {
+  border: none;
+  background: transparent;
+}
+
+.btn-preview {
+    background-color: #be1e2d; /* Red background */
+    color: white;
+    border-radius: 50%; /* Circle shape */
+    border: none;
+    padding: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .btn-preview iconify-icon {
+    color: white;
+  }
+
+  .btn-preview:hover {
+    background-color: #a31423; /* Darker red on hover */
+  }

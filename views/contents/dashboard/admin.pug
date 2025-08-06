@@ -1,0 +1,21 @@
+extends ../../layouts/dlayout
+
+block title
+    | Dashboard
+
+block csslink
+    link(rel='stylesheet' href='/icc/css/dashboard.css')
+
+block content
+    .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+        h6.fw-semibold.mb-0 Dashboard
+    #index-page
+
+block script
+    script(src='/icc/js/dashboard/admin.js')
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+    script.
+        const token = "#{token}"
+

@@ -1,0 +1,206 @@
+.nav-link {
+  color: rgb(0, 0, 0, 1); /* Default color */
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #b61e2d !important; /* text-primary-600 color */
+  font-weight: bold;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px; /* Adjust spacing */
+  width: 100%;
+  height: 3px; /* Thickness of the underline */
+  background-color: #b61e2d; /* Same as text-primary-600 */
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+  transform: scaleX(1); /* Show underline on hover/focus */
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.floating-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.panic-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Custom Styling for Panic Popup */
+.panic-popup .webix_win_head {
+  background-color: transparent !important;
+  border-bottom: none !important;
+}
+
+.panic-popup {
+  background: transparent;
+  border: none;
+  margin-top: 30px;
+}
+
+.panic-popup .webix_win_body {
+  background: white;
+  padding: 5px;
+  text-align: center;
+}
+
+.panic-btn {
+  width: 100px;
+}
+
+.panic-btn .webix_el_box button {
+  background: white !important; /* Make background white */
+  border: 2px solid #be1e2d !important; /* Red outline */
+  color: #be1e2d !important;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.panic-btn .webix_el_box button:hover,
+.panic-btn .webix_el_box button:focus {
+  background: #be1e2d !important; /* Make background white */
+  border: 2px solid #be1e2d !important; /* Red outline */
+  color: white !important;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Hide Mobile Menu Initially */
+.mobile-nav {
+  display: none;
+  background: white;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Mobile Menu Links */
+.mobile-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav ul li {
+  padding: 10px;
+}
+
+.mobile-nav ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+}
+
+/* Mobile Buttons */
+.mobile-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Style Mobile Buttons */
+.mobile-buttons .btn {
+  width: 80%;
+  text-align: center;
+}
+
+/* Fix Navbar Alignment */
+.navbar-header-lp {
+  padding: 10px 20px;
+}
+
+/* Hamburger Menu Button */
+.hamburger-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-bar {
+    position: relative;
+}
+
+#suggestionsBox {
+    position: absolute;
+    top: 100%;
+    left: 150;
+    width: 15%;
+    max-height: 150px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid rgba(190, 30, 45, 0.3); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 5px;
+    display: none;
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: rgba(190, 30, 45, 0.1);  /* Efek hover pada item */
+}
+
+.navbar-header-lp {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+  
+
+
+/* Ensure Navbar is Responsive */
+@media screen and (max-width: 768px) {
+  .navbar-header-lp .nav {
+    display: none; /* Hide desktop menu */
+  }
+
+  .hamburger-menu {
+    display: block; /* Show hamburger */
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+}

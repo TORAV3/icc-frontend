@@ -110,6 +110,8 @@ function deleteUser(id) {
 var statusCombo = {
   view: "combo",
   value: "all",
+  label: "Status",
+  labelPosition: "top", 
   options: [
     { id: "all", value: "All" },
     { id: "0", value: "Inactive" },
@@ -171,7 +173,7 @@ var stats = {
           "</div>" +
           "</div>" +
           "<div class='icon_stats-total'>" +
-          "<iconify-icon icon='solar:case-minimalistic-outline'></iconify-icon>" +
+          "<iconify-icon icon='solar:shield-user-outline'></iconify-icon>" +
           "</div>" +
           "</div>" +
           "</div>"
@@ -194,7 +196,7 @@ var stats = {
           "</div>" +
           "</div>" +
           "<div class='icon_stats-approve'>" +
-          "<iconify-icon icon='solar:case-minimalistic-outline'></iconify-icon>" +
+          "<iconify-icon icon='solar:shield-user-outline'></iconify-icon>" +
           "</div>" +
           "</div>" +
           "</div>"
@@ -217,7 +219,7 @@ var stats = {
           "</div>" +
           "</div>" +
           "<div class='icon_stats-reject'>" +
-          "<iconify-icon icon='solar:case-minimalistic-outline'></iconify-icon>" +
+          "<iconify-icon icon='solar:shield-user-outline'></iconify-icon>" +
           "</div>" +
           "</div>" +
           "</div>"
@@ -227,9 +229,35 @@ var stats = {
       css: "stats",
       data: { inactive: 0 },
     },
-    {},
+    {
+      template:
+        "<div class='card new' id='addDataCard'>" +
+        "<div class='card-content'>" +
+        "<div class='text-new'>" +
+        "<div class='title-new'>Buat Baru</div>" +
+        "<div class='desc-new'>User</div>" +
+        "</div>" +
+        "<div class='icon_stats-new'>" +
+        "<iconify-icon icon='solar:clipboard-add-outline'></iconify-icon>" +
+        "</div>" +
+        "</div>" +
+        "</div>",
+      autoheight: true,
+      css: "stats",
+    },
   ],
 };
+
+setTimeout(() => {
+  let addDataCard = document.getElementById("addDataCard");
+  if (addDataCard) {
+    addDataCard.addEventListener("click", function () {
+      window.location.href = "/user-access/tambah";
+    });
+  } else {
+    console.error("Element #addDataCard not found!");
+  }
+}, 500);
 
 var edit =
   "<span class='webix_icon me-1 editBtn' style='cursor:pointer;'><iconify-icon icon='solar:pen-new-round-linear' style='color:#398bf1;'></iconify-icon></span>";

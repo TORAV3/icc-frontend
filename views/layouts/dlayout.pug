@@ -1,0 +1,246 @@
+doctype html
+html(lang="en" data-theme="light")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title
+            block title
+        link(rel="icon" type="image/png" href="/icc/images/icc-header.png" sizes="16x16")
+        link(rel="stylesheet" href="/assets/css/remixicon.css")
+        link(rel="stylesheet" href="/assets/css/lib/bootstrap.min.css")
+        link(rel="stylesheet" href="/assets/css/style.css")
+        link(rel="stylesheet" href="/icc/css/layout.css")
+        link(rel="stylesheet" href="https://cdn.webix.com/edge/webix.css" type="text/css")
+
+        block csslink
+        block cssstyle
+    body
+        aside.sidebar
+            button.sidebar-close-btn(type="button")
+                iconify-icon(icon="radix-icons:cross-2")
+            div
+                a.sidebar-logo(href="/home")
+                    div.text-center
+                        img.light-logo(src="/icc/images/logoicc.png" alt="site logo")
+
+                    img.dark-logo(src="/icc/images/logoicc.png" alt="site logo")
+                    img.logo-icon(src="/icc/images/logoicc.png" alt="site logo")
+            div.sidebar-menu-area
+                ul.sidebar-menu#sidebar-menu
+                    if userData.type === 'tsk' || userData.type === 'kumiai' || userData.type === 'langsung'
+                        li
+                            a(href="/dashboard/perusahaan")
+                                iconify-icon.menu-icon(icon="solar:home-smile-angle-outline")
+                                span Dashboard
+                    if userData.type === 'peserta'
+                        li
+                            a(href="/dashboard/peserta")
+                                iconify-icon.menu-icon(icon="solar:home-smile-angle-outline")
+                                span Dashboard
+                    if userData.type === 'internal'
+                        li
+                            a(href="/dashboard/admin")
+                                iconify-icon.menu-icon(icon="solar:home-smile-angle-outline")
+                                span Dashboard
+                    if userData.type === 'so' || userData.type === 'p3mi'
+                        li
+                            a(href="/dashboard/mitra")
+                                iconify-icon.menu-icon(icon="solar:home-smile-angle-outline")
+                                span Dashboard
+                    if userData.type === 'tsk' || userData.type === 'kumiai' || userData.type === 'langsung'
+                        li
+                            a(href="/pesertaiso")
+                                iconify-icon.menu-icon(icon="solar:users-group-rounded-linear")
+                                span Peserta ISO
+                        li
+                            a(href="/list/perusahaan")
+                                iconify-icon.menu-icon(icon="solar:home-2-outline")
+                                span Manajemen SO/P3MI
+                        li
+                            a(href="/loker/perusahaan")
+                                iconify-icon.menu-icon(icon="solar:case-minimalistic-outline")
+                                span Lowongan Kerja
+
+                    if userData.type === 'so'
+                        li
+                            a(href="/monitoring/so")
+                                iconify-icon.menu-icon(icon="solar:map-point-outline")
+                                span Monitoring Lokasi
+
+                    if userData.type === 'p3mi'
+                        li
+                            a(href="/monitoring/p3mi")
+                                iconify-icon.menu-icon(icon="solar:map-point-outline")
+                                span Monitoring Lokasi
+
+                    if userData.type === 'peserta'
+                        li
+                            a(href="/kelasonline")
+                                iconify-icon.menu-icon(icon="solar:star-line-duotone")
+                                span Kelas Online
+                        li
+                            a(href="/teman")
+                                iconify-icon.menu-icon(icon="solar:users-group-rounded-linear")
+                                span Teman
+                        li
+                            a(href="/dkomunitas")
+                                iconify-icon.menu-icon(icon="solar:users-group-two-rounded-outline")
+                                span Komunitas
+                        li
+                            a(href="/lowongankerja")
+                                iconify-icon.menu-icon(icon="solar:case-minimalistic-outline")
+                                span Lowongan Kerja
+                        li
+                            a(href="/aduan")
+                                iconify-icon.menu-icon(icon="solar:danger-circle-outline")
+                                span Aduan
+                    
+                    if userData.type === 'internal'
+                        li
+                            a(href="/monitoring")
+                                iconify-icon.menu-icon(icon="solar:map-point-outline")
+                                span Monitoring Lokasi
+                        if userData.access.muser === '1'
+                            li
+                                a(href="/manajemen/peserta")
+                                    iconify-icon.menu-icon(icon="solar:users-group-rounded-line-duotone")
+                                    span Manajemen Peserta
+                        if userData.access.mperusahaan === '1'
+                            li
+                                a(href="/manajemen/perusahaan")
+                                    iconify-icon.menu-icon(icon="solar:case-minimalistic-outline")
+                                    span Manajemen Perusahaan
+                        if userData.access.martikel === '1'
+                            li
+                                a(href="/manajemen/artikel")
+                                    iconify-icon.menu-icon(icon="solar:file-text-linear")
+                                    span Manajemen Artikel
+                        if userData.access.mcharity === '1'
+                            li
+                                a(href="/manajemen/charity")
+                                    iconify-icon.menu-icon(icon="solar:people-nearby-outline")
+                                    span Manajemen Charity
+                        if userData.access.mkomunitas === '1'
+                            li
+                                a(href="/manajemen/komunitas")
+                                    iconify-icon.menu-icon(icon="solar:users-group-two-rounded-outline")
+                                    span Manajemen Komunitas
+                        if userData.access.mloker === '1'
+                            li
+                                a(href="/manajemen/loker")
+                                    iconify-icon.menu-icon(icon="solar:case-minimalistic-outline")
+                                    span Manajemen Lowongan Kerja
+                        if userData.access.maduan === '1'
+                            li
+                                a(href="/manajemen/aduan")
+                                    iconify-icon.menu-icon(icon="solar:danger-circle-outline")
+                                    span Manajemen Aduan
+                        if userData.access.mpanic === '1'
+                            li
+                                a(href="/manajemen/panic")
+                                    iconify-icon.menu-icon(icon="solar:danger-triangle-outline")
+                                    span Manajemen Panic Button
+                        if userData.access.usaccess === '1'
+                            li
+                                a(href="/user-access")
+                                    iconify-icon.menu-icon(icon="solar:shield-user-broken")
+                                    span User Access
+
+                    
+        main.dashboard-main
+            .navbar-header
+                .row.align-items-center.justify-content-between
+                    .col-auto
+                        .d-flex.flex-wrap.align-items-center.gap-4
+                            button.sidebar-toggle(type="button")
+                                iconify-icon.icon.text-2xl.non-active(icon="heroicons:bars-3-solid")
+                                iconify-icon.icon.text-2xl.active(icon="iconoir:arrow-right")
+                            button.sidebar-mobile-toggle(type="button")
+                                iconify-icon.icon(icon="heroicons:bars-3-solid")
+                    .col-auto
+                        .d-flex.flex-wrap.align-items-center.gap-3
+                            div.dropdown
+                                button.d-flex.justify-content-center.align-items-center.rounded-circle(
+                                    type="button",
+                                    data-bs-toggle="dropdown"
+                                )
+                                    img.w-40-px.h-40-px.object-fit-cover.rounded-circle(
+                                        src= userData.type === 'internal' 
+                                        ? '/icc/images/admin.png' 
+                                        : (userData.profilePicBase64 ? userData.profilePicBase64 : '/icc/images/default-avatar.png'),
+                                        alt="image"
+                                    )
+                                div.dropdown-menu.to-top.dropdown-menu-sm
+                                    div.py-12.px-16.radius-8.bg-primary-50.mb-16.d-flex.align-items-center.justify-content-between.gap-2
+                                        div
+                                            if userData.type === 'peserta'
+                                                h6.text-lg.text-primary-light.fw-semibold.mb-2 #{userData.userDetail.fullname}
+                                                span.text-secondary-light.fw-medium.text-sm #{userData.type.toUpperCase()}
+                                            if userData.type === 'tsk' || userData.type === 'kumiai' || userData.type === 'langsung' || userData.type === 'so' || userData.type === 'p3mi'
+                                                h6.text-lg.text-primary-light.fw-semibold.mb-2 #{userData.companyDetail.name}
+                                                span.text-secondary-light.fw-medium.text-sm #{userData.type.toUpperCase()}
+                                            if userData.type === 'internal'
+                                                h6.text-lg.text-primary-light.fw-semibold.mb-2 Admin
+                                                span.text-secondary-light.fw-medium.text-sm #{userData.type.toUpperCase()}
+                                    ul.to-top-list
+                                        if userData.type === 'peserta'
+                                            li
+                                                a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href=`/profil/peserta/${userData.id}`)
+                                                    iconify-icon.icon(
+                                                        icon="solar:user-circle-outline",
+                                                        class="text-xl"
+                                                    )
+                                                    | Profil
+                                        if userData.type === 'tsk' || userData.type === 'kumiai' || userData.type === 'langsung' || userData.type === 'so' || userData.type === 'p3mi'
+                                            li
+                                                a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(
+                                                    href= userData.type === 'tsk' ? `/profil/tsk/${userData.id}` : 
+                                                        userData.type === 'kumiai' ? `/profil/kumiai/${userData.id}` : 
+                                                        userData.type === 'langsung' ? `/profil/langsung/${userData.id}` : 
+                                                        userData.type === 'so' ? `/profil/so/${userData.id}` :
+                                                        userData.type === 'p3mi' ? `/profil/p3mi/${userData.id}` :
+                                                        `/profil/${userData.id}`
+                                                )
+                                                    iconify-icon.icon(
+                                                        icon="solar:user-circle-outline",
+                                                        class="text-xl"
+                                                    )
+                                                    | Profil
+                                        li
+                                            a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href="/home")
+                                                iconify-icon.icon(
+                                                    icon="solar:home-smile-angle-outline",
+                                                    class="text-xl"
+                                                )
+                                                | Home
+                                        li
+                                            a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href="javascript:void(0)" id="logoutBtn")
+                                                iconify-icon.icon(
+                                                    icon="lucide:power",
+                                                    class="text-xl"
+                                                )
+                                                | Log Out
+
+
+            .dashboard-main-body
+                block content
+
+            if typeof userData !== 'undefined' && userData
+                if userData.type === 'peserta'
+                    a.floating-button(href="javascript:void(0)" onclick="showPanicPopup()")
+                        img(src="/icc/images/panic-dark.png" alt="Panic Button" class="panic-img")
+                    div#panicPopup
+
+                
+        script(src="/assets/js/lib/jquery-3.7.1.min.js") 
+        script(src="/assets/js/lib/bootstrap.bundle.min.js") 
+        script(src="/assets/js/lib/iconify-icon.min.js") 
+        script(src="https://cdn.webix.com/edge/webix.js" type="text/javascript") 
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+        script(src="/assets/js/app.js") 
+        script(src="/icc/js/panic.js")
+        script(src="/icc/js/logout.js")
+        script.
+            const userData = !{JSON.stringify(userData)};
+        block script
+        block js

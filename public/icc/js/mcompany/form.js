@@ -9,22 +9,22 @@ function loadUserDetailData() {
       const data = res.data.data;
       const companyDetail = data.companyDetail;
 
-      // Set header values
       document.getElementById("companyNameHeader").textContent =
-        companyDetail.name_company;
-      document.getElementById("idHeader").textContent = "ID: " + data.id;
-      document.getElementById("statusHeader").textContent = "Perusahaan";
+        companyDetail.name;
+      // document.getElementById("idHeader").textContent = "ID : " + data.id;
+      document.getElementById("statusHeader").textContent = data.type.toUpperCase();
 
-      // Set Webix form values
       $$("id").setValue(data.id);
       $$("token").setValue(token);
-      $$("name_company").setValue(companyDetail.name_company);
+      $$("name").setValue(companyDetail.name);
       $$("email").setValue(data.email);
-      $$("address_company").setValue(companyDetail.address_company);
+      $$("address").setValue(companyDetail.address);
       $$("country").setValue(companyDetail.country);
-      $$("pic_name").setValue(companyDetail.pic_name);
-      $$("pic_number").setValue(companyDetail.pic_number);
-      $$("business_sector").setValue(companyDetail.business_sector);
+      $$("picname").setValue(companyDetail.picname);
+      $$("picnumber").setValue(companyDetail.picnumber);
+      $$("noizin").setValue(companyDetail.noizin);
+      $$("notelp").setValue(companyDetail.notelp);
+      $$("businesssector").setValue(companyDetail.businesssector);
     })
     .catch((err) => {
       console.log(err);
@@ -37,8 +37,8 @@ function loadUserDetailData() {
 
 var tabcells = [
   {
-    header: "Data Perusahaan",
-    width: 150,
+    header: "Data Profil Perusahaan",
+    width: 200,
     body: {
       id: "formres",
       rows: [
@@ -70,13 +70,13 @@ var tabcells = [
                       cols: [
                         {
                           view: "text",
-                          name: "name_company",
-                          id: "name_company",
+                          name: "name",
+                          id: "name",
                           label: "Nama Perusahaan",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
                         {
                           width: 50,
@@ -89,7 +89,7 @@ var tabcells = [
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
                       ],
                     },
@@ -104,26 +104,26 @@ var tabcells = [
                       cols: [
                         {
                           view: "text",
-                          name: "business_sector",
-                          id: "business_sector",
-                          label: "Sektor Bisnis",
+                          name: "noizin",
+                          id: "noizin",
+                          label: "No. Izin Perusahaan",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
                         {
                           width: 50,
                         },
                         {
                           view: "text",
-                          name: "country",
-                          id: "country",
-                          label: "Negara",
+                          name: "notelp",
+                          id: "notelp",
+                          label: "No. Telp Perusahaan",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
                       ],
                     },
@@ -138,26 +138,26 @@ var tabcells = [
                       cols: [
                         {
                           view: "text",
-                          name: "pic_name",
-                          id: "pic_name",
-                          label: "Nama PIC",
+                          name: "businesssector",
+                          id: "businesssector",
+                          label: "Sektor Bisnis",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
                         {
                           width: 50,
                         },
                         {
                           view: "text",
-                          name: "pic_number",
-                          id: "pic_number",
-                          label: "No. Telepon PIC",
+                          name: "country",
+                          id: "country",
+                          label: "Negara",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
-                          readonly: true,
+                          
                         },
                       ],
                     },
@@ -171,15 +171,48 @@ var tabcells = [
                       responsive: "row4",
                       cols: [
                         {
+                          view: "text",
+                          name: "picname",
+                          id: "picname",
+                          label: "Nama PIC",
+                          labelPosition: "top",
+                          required: true,
+                          minWidth: 300,
+                          
+                        },
+                        {
+                          width: 50,
+                        },
+                        {
+                          view: "text",
+                          name: "picnumber",
+                          id: "picnumber",
+                          label: "No. Telp PIC",
+                          labelPosition: "top",
+                          required: true,
+                          minWidth: 300,
+                          
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "row5",
+                  margin: 10,
+                  rows: [
+                    {
+                      responsive: "row5",
+                      cols: [
+                        {
                           view: "textarea",
-                          name: "address_company",
-                          id: "address_company",
+                          name: "address",
+                          id: "address",
                           label: "Alamat Perusahaan",
                           labelPosition: "top",
                           required: true,
                           minWidth: 300,
                           height: 100,
-                          readonly: true,
                         },
 
                         {
@@ -212,6 +245,9 @@ var form = {
   elements: [tab],
 };
 
+
+
+
 webix.ready(function () {
   grid = webix.ui({
     container: "index-page",
@@ -221,6 +257,11 @@ webix.ready(function () {
   webix.event(window, "resize", function () {
     grid.adjust();
   });
+
+  let tipe = type;
+
+  console.log(tipe);
+  
 
   loadUserDetailData();
 });

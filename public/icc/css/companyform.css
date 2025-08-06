@@ -110,6 +110,42 @@
   border-radius: 7px;
   text-align: center;
 }
+
+.uploadstyle {
+  border: none;
+}
+
+.uploadstyle .webix_template {
+  padding: 0;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-container input[type="text"] {
+  width: 100%;
+  padding-right: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.input-container .icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+  font-size: 16px;
+}
+
+.input-container input[type="file"] {
+  display: none;
+}
+
+
 @media (min-width: 768px) {
   .wrapper-content {
     width: 35%;

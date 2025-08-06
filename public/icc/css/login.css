@@ -18,12 +18,15 @@ body {
   padding: 15px;
 }
 
-.btnmasuk .webix_el_box button {
+.btnmasuk .webix_el_box button,
+.btnmasuk .webix_el_box button:hover,
+.btnmasuk .webix_el_box button:focus {
   background-color: #be1e2d;
   color: white;
   border-radius: 7px;
   text-align: center;
 }
+
 
 .btndaftar .webix_el_box button {
   background-color: transparent;
@@ -41,6 +44,14 @@ section.auth {
 .auth-left {
   display: none;
   background: #be1e2d;
+}
+
+.logo-left{
+  width: 100px;
+}
+
+.logo-right{
+  margin-bottom: 50px;
 }
 
 @media (min-width: 992px) {
@@ -75,19 +86,47 @@ section.auth {
   margin-left: 30px;
 }
 
-/* Auth Right */
+
 .auth-right {
   background: #ffdfe1;
   padding: 32px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%; /* Full width by default */
+  width: 100%;
 }
+
+.btn-social {
+  border: none;
+  background: transparent;
+}
+
+.btn-social .social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;                
+  padding: 8px 9px;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #444;
+  transition: background-color 0.2s;
+}
+
+.btn-social .social-btn:hover {
+  background-color: #e0e0e0;
+}
+.btn-social .icon {
+  width: 22px;
+  height: 22px;
+}
+
 
 @media (min-width: 992px) {
   .auth-right {
-    width: 50%; /* Adjust width for larger screens */
+    width: 50%;
   }
 }
 

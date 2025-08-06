@@ -1,0 +1,128 @@
+#map-container {
+  position: sticky;
+  top: 0; /* Keeps the map at the top when scrolling */
+  height: 900px; /* Define a fixed height for the map */
+  width: 100%; /* Ensures full width */
+  z-index: 1; /* Ensures it remains above other elements if needed */
+  background: #f9f9f9; /* Optional: Set a background color for clarity */
+}
+
+#map-container-indo {
+  position: sticky;
+  top: 0; /* Keeps the map at the top when scrolling */
+  height: 550px; /* Define a fixed height for the map */
+  width: 100%; /* Ensures full width */
+  z-index: 1; /* Ensures it remains above other elements if needed */
+  background: #f9f9f9; /* Optional: Set a background color for clarity */
+}
+
+.card {
+  border-radius: 12px;
+  padding: 10px;
+  margin: 10px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.stats {
+  border: none;
+  background: transparent;
+}
+
+.card.stats {
+  width: 250px;
+  height: 112px;
+  margin-left: 20px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 18px;
+  margin-left: 15px;
+  color: rgba(32, 34, 36, 0.6);
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.value {
+  font-size: 25px;
+  margin-top: 5px;
+  margin-left: 15px;
+  color: rgba(32, 34, 36, 1);
+  font-weight: bold;
+}
+
+.icon_stats-reject,
+.icon_stats-cperempuan {
+  font-size: 40px;
+  color: rgba(255, 153, 36, 1);
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 153, 36, 0.3);
+}
+
+.icon_stats-pniso,
+.icon_stats-claki {
+  font-size: 40px;
+  color: rgba(0, 20, 57, 1);
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: rgba(0, 20, 57, 0.3);
+}
+
+.icon_stats-piso {
+  font-size: 40px;
+  color: rgba(49, 106, 255, 1);
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: rgba(49, 106, 255, 0.3);
+}
+
+.icon_stats-tpeserta,
+.icon_stats-ctotal {
+  font-size: 40px;
+  color: rgba(190, 30, 45, 1);
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: rgba(190, 30, 45, 0.3);
+}
+
+.cityName {
+  font-size: 28px;
+  font-weight: bold;
+  color: #be1e2d;
+  margin-left: 10px;
+}
+
+.cityNameIndo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #be1e2d;
+  margin-left: 10px;
+}
+
+.statsView {
+  padding: 20px;
+}

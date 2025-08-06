@@ -1,0 +1,24 @@
+extends ../../layouts/hlayout
+
+block title
+  | Charity
+
+block csslink
+  link(rel='stylesheet' href='/icc/css/charity.css')
+
+block content
+  section.charity-section.py-5
+    .container
+      // Header
+      .d-flex.justify-content-between.align-items-start.mb-4
+        .text-content
+          h3.fw-bold Charity
+      .divider
+      #index-page
+block script
+  script(src='/icc/js/charity/viewall.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+  script.
+    const token = "#{token}"

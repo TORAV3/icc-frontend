@@ -1,0 +1,22 @@
+extends ../../layouts/dlayout
+
+block title
+  | Lowongan Kerja
+
+block csslink
+  link(rel='stylesheet' href='/icc/css/mjob.css')
+
+block content
+  .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+        h6.fw-semibold.mb-0 Lowongan Kerja
+  #index-page
+  
+block script
+  script(src='/icc/js/mjob/perusahaan.js')
+  script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js' type='text/javascript')
+
+block js
+  script.
+    const token = "#{token}"
+    const type = "#{userData.type}"
+    const userId = "#{userData.id}"

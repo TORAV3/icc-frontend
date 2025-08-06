@@ -1,0 +1,19 @@
+extends ../../layouts/hlayout
+
+block title
+  | Detail Artikel
+
+block csslink
+  link(rel='stylesheet' href='/icc/css/dartikel.css')
+
+block content
+  #index-page
+
+block script
+  script(src='/icc/js/artikel/detail.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+  script.
+    const token = "#{token}"
+    const id = "#{id}";

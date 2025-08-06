@@ -1,0 +1,30 @@
+.dataview-thread {
+  border: none;
+  background: transparent;
+}
+
+.dataview {
+  border: none;
+  background: transparent;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  background-color: #be1e2d;
+  margin: 20px 0;
+}
+
+.webix_secondary .webix_button {
+  background: #be1e2d;
+  color: white;
+  border-radius: 5px;
+}
+
+.webix_secondary .webix_button:hover,
+.webix_secondary .webix_button:focus {
+  background: #be1e2d;
+}
+
+
+

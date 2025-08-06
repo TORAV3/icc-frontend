@@ -1,20 +1,89 @@
-extends ../../layouts/layout
+extends ../../layouts/hlayout
 
 block title
-    | Manajemen FAQ
+  | FAQs
 
 block csslink
-    link(rel='stylesheet' href='/icc/css/mfaq.css')
+  link(rel='stylesheet' href='/icc/css/landingpage/faq.css')
 
 block content
-    .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
-        h6.fw-semibold.mb-0 Manajemen FAQ
-    #index-page
+  // Title Section
+  section.title-section.py-5.text-center
+    .container
+        span.fw-bold.text-dark FAQs
+        h3.fw-bold.text-neutral-800.text-center Frequently asked questions
+        p.text-muted Have questions? We’re here to help.
 
-block script
-    script(src='/icc/js/mfaq/index.js')
-    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+  // FAQ Section
+  section.faq-section.py-5
+    .container
+      .accordion#faqAccordion
 
-block js
-    script.
-        const token = "#{token}"
+        // FAQ Item 1
+        .accordion-item
+          h2.accordion-header
+            button.accordion-button(type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true")
+              span.fw-bold.text-neutral-800 Apa itu Indonesian Care Center (ICC)?
+          .accordion-collapse.collapse.show#faq1(data-bs-parent="#faqAccordion")
+            .accordion-body
+              p ICC adalah platform digital yang didedikasikan untuk mendukung pekerja migran Indonesia di Jepang, khususnya peserta program magang dan Specified Skilled Worker (SSW). Kami menyediakan panduan adaptasi budaya, dukungan hukum, layanan kesehatan, serta jaringan komunitas untuk memastikan keberhasilan pekerja di Jepang.
+
+        // FAQ Item 2
+        .accordion-item
+          h2.accordion-header
+            button.accordion-button.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false")
+              span.fw-bold.text-neutral-800 Siapa yang bisa menggunakan layanan ICC?
+          .accordion-collapse.collapse#faq2(data-bs-parent="#faqAccordion")
+            .accordion-body
+              p ICC dapat digunakan oleh pekerja migran Indonesia di Jepang, baik yang berada dalam program Specified Skilled Worker (SSW) maupun individu yang membutuhkan bantuan terkait hukum, kesehatan, dan kehidupan sehari-hari di Jepang.
+
+        // FAQ Item 3
+        .accordion-item
+          h2.accordion-header
+            button.accordion-button.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false")
+              span.fw-bold.text-neutral-800 Apakah ICC berafiliasi dengan pemerintah Indonesia/Jepang?
+          .accordion-collapse.collapse#faq3(data-bs-parent="#faqAccordion")
+            .accordion-body
+              p ICC bekerja sama dengan berbagai lembaga pemerintah dan organisasi terkait untuk menyediakan layanan terbaik bagi pekerja migran. Namun, ICC bukan lembaga pemerintah.
+
+        // FAQ Item 4
+        .accordion-item
+          h2.accordion-header
+            button.accordion-button.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false")
+              span.fw-bold.text-neutral-800 Apa saja fitur utama aplikasi ICC untuk pekerja migran?
+          .accordion-collapse.collapse#faq4(data-bs-parent="#faqAccordion")
+            .accordion-body
+              p Fitur utama aplikasi ICC meliputi panduan hukum, konsultasi kesehatan, informasi komunitas, serta bantuan darurat bagi pekerja migran di Jepang.
+
+        // FAQ Item 5
+        .accordion-item
+          h2.accordion-header
+            button.accordion-button.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false")
+              span.fw-bold.text-neutral-800 Bagaimana cara melapor jika mengalami masalah di tempat kerja?
+          .accordion-collapse.collapse#faq5(data-bs-parent="#faqAccordion")
+            .accordion-body
+              p Jika mengalami masalah di tempat kerja, Anda dapat menggunakan fitur laporan di aplikasi ICC atau menghubungi tim dukungan kami melalui layanan bantuan hukum.
+
+        // FAQ Item 6
+        .accordion-item
+          h2.accordion-header
+            button.accordion-button.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false")
+              span.fw-bold.text-neutral-800 Apakah ICC membantu perpanjangan visa atau perubahan status SSW?
+          .accordion-collapse.collapse#faq6(data-bs-parent="#faqAccordion")
+            .accordion-body
+              p Ya, ICC dapat membantu proses perpanjangan visa dan perubahan status SSW dengan memberikan informasi dan bimbingan terkait prosedur administrasi yang diperlukan.
+
+        // FAQ Item 7
+        .accordion-item
+          h2.accordion-header
+            button.accordion-button.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false")
+              span.fw-bold.text-neutral-800 Apakah ada biaya untuk layanan konsultasi hukum/kesehatan?
+          .accordion-collapse.collapse#faq7(data-bs-parent="#faqAccordion")
+            .accordion-body
+              p Sebagian besar layanan di ICC tersedia secara gratis bagi pekerja migran Indonesia di Jepang. Namun, beberapa layanan tambahan mungkin memerlukan biaya yang akan diinformasikan terlebih dahulu.
+
+  // Footer Section
+  section.footer-section.py-5.text-center
+    .container
+        h3.fw-bold.text-primary-50.text-center Tetap Terhubung dengan ICC!
+        p.text-primary-50.text-center.mt-5 Kami di sini untuk memastikan perjalanan Anda di Jepang aman, nyaman, dan penuh prestasi. Gunakan Aplikasi ICC sekarang atau hubungi kami untuk pertanyaan lebih lanjut!

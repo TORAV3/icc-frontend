@@ -6,7 +6,7 @@ var form = {
     {
       margin: 10,
       rows: [
-        { type: "section", template: "Data Peduli Sesama" },
+        { type: "section", template: "Data Charity" },
         {
           id: "formres",
           margin: 10,
@@ -89,17 +89,32 @@ var form = {
                 "<span>Deskripsi<span class='text-danger ms-1'> *</span></span>",
             },
             {
-              responsive: "row3",
-              cols: [
-                {
-                  view: "ckeditor5",
-                  name: "description", // Ensure this matches in `rules`
-                  id: "description",
-                  required: true,
-                  minWidth: 300,
-                  minHeight: 400,
-                },
-              ],
+              view: "template",
+              id: "editorContainer",
+              template: `<textarea id="editor" name="description" style="width: 100%;"></textarea>`, // ← penting!
+              height: 400,
+              on: {
+                onAfterRender: function () {
+                  window.sunEditor = SUNEDITOR.create(document.getElementById("editor"), {
+                    width: "100%",  // ← tambah juga ini
+                    height: "300px",
+                    buttonList: [
+                        ['undo', 'redo'],
+                        ['font', 'fontSize', 'formatBlock'],
+                        ['paragraphStyle', 'blockquote'],
+                        ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+                        ['fontColor', 'hiliteColor', 'textStyle'],
+                        ['removeFormat'],
+                        ['outdent', 'indent'],
+                        ['align', 'list', 'lineHeight'],
+                        ['table' /** ,'math' */], // You must add the 'katex' library at options to use the 'math' plugin.
+                        /** ['imageGallery'] */ // You must add the "imageGalleryUrl".
+                        ['fullScreen'],
+                        /** ['dir', 'dir_ltr', 'dir_rtl'] */ // "dir": Toggle text direction, "dir_ltr": Right to Left, "dir_rtl": Left to Right
+                    ]
+                  });
+                }
+              }
             },
           ],
         },
@@ -196,7 +211,7 @@ var form = {
           css: "btnKembali",
           autowidth: true,
           click: function () {
-            window.location.href = "/manajemen/pedulisesama";
+            window.location.href = "/manajemen/charity";
           },
         },
         {
@@ -214,9 +229,9 @@ var form = {
     category: webix.rules.isNotEmpty,
     norek: webix.rules.isNotEmpty,
     thumbnail: webix.rules.isNotEmpty,
-    description: function (value) {
-      return value.trim() !== "";
-    },
+    // description: function (value) {
+    //   return value.trim() !== "";
+    // },
   },
 };
 
@@ -228,7 +243,16 @@ function submit_form() {
     return;
   }
 
+  const deskripsi = window.sunEditor.getContents(); // HTML string
+
+  if (!deskripsi || deskripsi.trim() === "" || deskripsi === "<p><br></p>") {
+    webix.message({ type: "error", text: "Deskripsi tidak boleh kosong!" });
+    return;
+  }
+
   var formData = form.getValues();
+  formData.description = deskripsi;
+
   axios
     .post(`http://localhost:3000/api/icc/pedulisesama/tambah`, formData, {
       headers: {
@@ -238,7 +262,7 @@ function submit_form() {
     .then(function (response) {
       webix.message({ type: "success", text: response.data.data });
       setTimeout(() => {
-        window.location.href = "/manajemen/pedulisesama";
+        window.location.href = "/manajemen/charity";
       }, 1300);
     })
     .catch(function (error) {

@@ -2,7 +2,7 @@
 doctype html
 html(lang="en", data-theme="light")
   head
-    link(rel="icon" type="image/png" href="icc/images/icclogo.png" sizes="16x16")
+    link(rel="icon" type="image/png" href="icc/images/icc-header.png" sizes="16x16")
     //- remix icon font css
     link(rel="stylesheet" href="assets/css/remixicon.css")
     //- Bootstrap css
@@ -26,12 +26,15 @@ html(lang="en", data-theme="light")
         form.auth-form
         .form-group
           .row
-            label(for="country-select")
-            select#country-select.form-control
-              option(value="" selected) Pilih Program
-              option(value="magang") Magang (Jisshusei)
-              option(value="pmi") Pekerja PMI (Tokutei Ginou)
-              option(value="perusahaan") Perusahaan Jepang
+            label(for="role-select")
+            select#role-select.form-control(onchange="updateOptions()")
+              option(value="" selected) Pilih User
+              option(value="peserta") Peserta
+              option(value="perusahaan") Perusahaan
+        .form-group#program-select-wrapper(style="display: none;")
+          .row
+            select#program-select.form-control
+              option(value="" selected) Pilih Jenis
             button.btn.btn-primary(type="button", onclick="redirectToForm()") Daftar
 
     //- Scripts

@@ -165,5 +165,78 @@
 }
 
 .webix_icon.actionMenu:hover {
-  color: #007bff;
+  color: #be1e2d;
+}
+
+.webix_secondary .webix_button {
+  background: #be1e2d;
+  color: white;
+  border-radius: 5px;
+}
+
+.webix_secondary .webix_button:hover,
+.webix_secondary .webix_button:focus {
+  background: #be1e2d;
+}
+
+.btnSimpan .webix_el_box button,
+.btnSimpan .webix_el_box button:hover,
+.btnSimpan .webix_el_box button:focus {
+  background-color: #be1e2d;
+  color: white;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.btnKembali .webix_el_box button,
+.btnKembali .webix_el_box button:hover,
+.btnKembali .webix_el_box button:focus {
+  background-color: transparent;
+  color: rgb(83, 83, 83);
+  border: 1px solid rgb(61, 61, 61);
+  border-radius: 7px;
+  text-align: center;
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button[aria-label="Tidak"] {
+  background-color: white !important;  
+  color: #be1e2d !important;          
+  border: 1px solid #be1e2d !important;
+  border-radius: 5px !important;   
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button.confirm {
+  background-color: #be1e2d !important;  
+  color: white !important;              
+  border: 1px solid #be1e2d !important;  
+  border-radius: 5px !important; 
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button[aria-label="Tidak"]:hover {
+  background-color: #be1e2d !important; 
+  color: white !important;               
+  border: 1px solid #be1e2d !important;  
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button.confirm:hover {
+  background-color: darkred !important; 
+  border: 1px solid darkred !important; 
+}
+
+.pagerstyle .webix_pager_item,
+.pagerstyle .webix_pager_item:hover,
+.pagerstyle .webix_pager_item:focus {
+  background-color: #be1e2d;
+  color: white;
+}
+
+/* SunEditor Fix: ensure EM, U, DEL appear correctly */
+.sun-editor .se-wrapper-wysiwyg u {
+  text-decoration: underline !important;
+}
+.sun-editor .se-wrapper-wysiwyg em {
+  font-style: italic !important;
+}
+.sun-editor .se-wrapper-wysiwyg del {
+  text-decoration: line-through !important;
 }

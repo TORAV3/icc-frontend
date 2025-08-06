@@ -11,7 +11,21 @@ function loadPeduliSesamaData() {
     })
     .then((res) => {
       if (res.data.data.length > 0) {
-        const transformedData = res.data.data.map(function (item) {
+        const statusFilter = $$("statusFilter").getValue();
+        const kategoriFilter = $$("kategoriFilter").getValue();
+        const transformedData = res.data.data
+        .filter((item) => {
+          if (statusFilter !== "all" && item.status !== statusFilter) {
+            return false;
+          }
+
+          if (kategoriFilter !== "all" && item.category !== kategoriFilter) {
+            return false;
+          }
+
+          return true;
+        })
+        .map(function (item) {
           return {
             id: item.id,
             status: item.status,
@@ -79,7 +93,7 @@ function deletePeduliSesama(id) {
       },
     })
     .then((res) => {
-      webix.message({ type: "success", text: res.data.data });
+      webix.message({ type: "success", text: "Berhasil Menghapus Data Charity" });
       loadPeduliSesamaData();
     })
     .catch((err) => {
@@ -100,6 +114,7 @@ function updatePeduliSesamaStatus(pedulisesamaId, status) {
     .headers({ Authorization: "Bearer " + token })
     .put(url, requestData)
     .then(function (data) {
+      webix.message({ type: "success", text: "Berhasil Merubah Status Charity" });
       loadPeduliSesamaData();
       countPeduliSesamaData();
     })
@@ -130,11 +145,49 @@ var searchForm = {
   },
 };
 
+var statusFilter = {
+  view: "combo",
+  id: "statusFilter",
+  label : "Status",
+  labelPosition : "top",
+  value: "all",
+  options: [
+    { id: "all", value: "All" },
+    { id: "published", value: "Published" },
+    { id: "draft", value: "Draft" },
+  ],
+  on: {
+    onChange: function () {
+      loadPeduliSesamaData();
+    },
+  },
+};
+
+var kategoriFilter = {
+  view: "combo",
+  id: "kategoriFilter",
+  label : "Kategori",
+  labelPosition : "top",
+  value: "all",
+  options: [
+    { id: "all", value: "All" },
+    { id: "Bencana", value: "Bencana" },
+    { id: "Sosial", value: "Sosial" },
+    { id: "Pendidikan", value: "Pendidikan" },
+    { id: "Kesehatan", value: "Kesehatan" },
+  ],
+  on: {
+    onChange: function () {
+      loadPeduliSesamaData();
+    },
+  },
+};
+
 var toolbar = {
   view: "toolbar",
   css: "toolbar",
   padding: 15,
-  cols: [searchForm],
+  cols: [statusFilter, kategoriFilter, {}, {}, searchForm],
 };
 
 var edit =
@@ -143,12 +196,11 @@ var trash =
   "<span class='webix_icon delBtn' style='cursor:pointer;'><iconify-icon icon='solar:trash-bin-2-linear' style='color:red;'></iconify-icon></span>";
 
 var tabcols = [
-  { id: "id", hidden: true },
   {
     id: "action",
     header: { text: "", css: { "text-align": "center" } },
     css: { "text-align": "center" },
-    width: 80,
+    width: 50,
     template: function () {
       return `
           <span class="webix_icon actionMenu" style="cursor:pointer;">
@@ -157,6 +209,7 @@ var tabcols = [
         `;
     },
   },
+  { id: "id", hidden: true },
   {
     id: "status",
     header: { text: "Status", css: { "text-align": "center" } },
@@ -179,7 +232,7 @@ var tabcols = [
 webix.ui({
   view: "contextmenu",
   id: "actionMenu",
-  data: ["Edit", "Hapus"],
+  data: ["Edit", "Preview", "Hapus"],
   on: {
     onItemClick: function (id) {
       var context = this.getContext();
@@ -188,15 +241,41 @@ webix.ui({
 
       switch (action) {
         case "Edit":
-          window.location.href = `/manajemen/pedulisesama/edit/${rowId}`;
+          window.location.href = `/manajemen/charity/edit/${rowId}`;
           break;
+
+        case "Preview":
+          // showPreview(rowId);
+          window.open("/charity/detail/" + rowId, "_blank");
+          // window.open("/charity/detail/" + rowId, "_blank", "width=1280,height=800");
+
+          // Untuk mobile view
+          const mobileWidth = 390;
+          const mobileHeight = 844;
+
+          // Dapatkan ukuran layar saat ini
+          const screenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
+          const screenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
+          const screenWidth = window.innerWidth;
+          const screenHeight = window.innerHeight;
+
+          // Hitung posisi agar jendela muncul di tengah
+          const left = screenLeft + (screenWidth - mobileWidth) / 2;
+          const top = screenTop + (screenHeight - mobileHeight) / 2;
+
+          window.open(
+              "/charity/detail/" + rowId,
+              "_blank",
+              `width=${mobileWidth},height=${mobileHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`
+          );
+        break;
 
         case "Hapus":
           webix.confirm({
             title: "Konfirmasi Hapus",
             ok: "Ya", // Text for the confirm button
             cancel: "Tidak", // Text for the cancel button
-            text: "Apakah anda yakin ingin menghapus konten ini?",
+            text: "Apakah anda yakin ingin menghapus charity ini?",
             callback: function (result) {
               if (result) {
                 deletePeduliSesama(rowId);
@@ -209,11 +288,70 @@ webix.ui({
   },
 });
 
+function showPreview(rowId) {
+  axios
+  .get(`http://localhost:3000/api/icc/pedulisesama/${rowId}`)
+  .then((res) => {
+
+    const charity = res.data.data;
+    console.log(charity); 
+
+     var thumbnailUrl = charity.thumbnailBase64;
+
+     const formatDate = (dateString) => {
+        if (!dateString) return "Unknown Date";
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString("en-US", options);
+      };
+
+    
+    var previewContent = `
+      <div style="max-width: 800px; margin: auto; padding: 20px; text-align: center;">
+        <p style="color: rgba(190, 30, 45, 1); text-transform: uppercase; font-size: 14px; font-weight: bold;">${charity.category}</p>
+        <p style="color: rgba(15, 23, 43, 1); font-size: 32px; font-weight: bold; margin-top: 10px;">${charity.title}</p>
+        <img src="${thumbnailUrl}" alt="${charity.title}" style="width: 100%; height: auto; margin-top: 15px; border-radius: 8px;">
+         <div style="padding: 8px; border-radius: 6px; background: rgba(0, 0, 0, 0.1); display: inline-block; margin-top: 20px;">
+            <p style="margin: 0; font-size: 18px; font-weight: 600; color: black; text-align: center;"> ${charity.norek}</p>
+        </div>
+        <div style="margin-top: 20px; font-size: 18px; color: #444; text-align: left;">
+          ${charity.description}
+        </div>
+      </div>
+    `;
+
+    webix.ui({
+      view: "window",
+      id: "previewWindow",
+      head: "Preview",
+      body: {
+        view: "template",
+        template: previewContent,
+        height: 500,
+        width: 500,
+        scroll: true,
+      },
+      position: "center",
+      modal: true,
+      move: true,
+      close: true,
+    }).show();
+  })
+  .catch((err) => {
+    console.log("Error:", err);
+    webix.message({
+      type: "error",
+      text: err.response?.data?.message || "Error fetching data",
+    });
+  });
+
+}
+
 var table = {
   view: "datatable",
   id: "table",
   columns: tabcols,
   autoheight: true,
+  leftSplit: 1,
   onClick: {
     actionMenu: function (event, id, node) {
       // Show the context menu near the clicked button
@@ -334,7 +472,7 @@ var stats = {
         "<div class='card-content'>" +
         "<div class='text-new'>" +
         "<div class='title-new'>Buat Baru</div>" +
-        "<div class='desc-new'>Peduli Sesama</div>" +
+        "<div class='desc-new'>Charity</div>" +
         "</div>" +
         "<div class='icon_stats-new'>" +
         "<iconify-icon icon='solar:clipboard-add-outline'></iconify-icon>" +
@@ -351,8 +489,7 @@ setTimeout(() => {
   let addDataCard = document.getElementById("addDataCard");
   if (addDataCard) {
     addDataCard.addEventListener("click", function () {
-      console.log("Redirecting to /manajemen/pedulisesama/tambah...");
-      window.location.href = "/manajemen/pedulisesama/tambah";
+      window.location.href = "/manajemen/charity/tambah";
     });
   } else {
     console.error("Element #addDataCard not found!");

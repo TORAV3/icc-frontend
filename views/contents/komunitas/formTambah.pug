@@ -1,0 +1,21 @@
+extends ../../layouts/dlayout
+
+block title
+  | Tambah Komunitas
+
+block csslink
+  link(rel='stylesheet' href='/icc/css/komunitas.css')
+
+block content
+  .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-24
+    h6.fw-semibold.mb-0 Tambah Komunitas
+  #index-page
+block script
+  script(src='/icc/js/komunitas/formTambah.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+  script(src="//cdn.webix.com/components/edge/ckeditor5/ckeditor5.js" type="text/javascript")
+
+block js
+  script.
+    const token = "#{token}"
+    const userId = "#{userData.id}"

@@ -170,3 +170,46 @@
   background-color: #d78232;
   color: white;
 }
+
+.webix_secondary .webix_button {
+  background: #be1e2d;
+  color: white;
+  border-radius: 5px;
+}
+
+.webix_secondary .webix_button:hover,
+.webix_secondary .webix_button:focus {
+  background: #be1e2d;
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button[aria-label="Cancel"] {
+  background-color: white !important;  
+  color: #be1e2d !important;          
+  border: 1px solid #be1e2d !important;
+  border-radius: 5px !important;   
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button.confirm {
+  background-color: #be1e2d !important;  
+  color: white !important;              
+  border: 1px solid #be1e2d !important;  
+  border-radius: 5px !important; 
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button[aria-label="Cancel"]:hover {
+  background-color: #be1e2d !important; 
+  color: white !important;               
+  border: 1px solid #be1e2d !important;  
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button.confirm:hover {
+  background-color: darkred !important; 
+  border: 1px solid darkred !important; 
+}
+
+.pagerstyle .webix_pager_item,
+.pagerstyle .webix_pager_item:hover,
+.pagerstyle .webix_pager_item:focus {
+  background-color: #be1e2d;
+  color: white;
+}

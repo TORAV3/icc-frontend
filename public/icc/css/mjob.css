@@ -1,0 +1,156 @@
+.dataview-community {
+  border: none;
+  background: transparent;
+}
+
+.dataview {
+  border: none;
+  background: transparent;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  background-color: #be1e2d;
+  margin: 20px 0;
+}
+
+.webix_secondary .webix_button {
+  background: #be1e2d;
+  color: white;
+  border-radius: 5px;
+}
+
+.webix_secondary .webix_button:hover,
+.webix_secondary .webix_button:focus {
+  background: #be1e2d;
+}
+
+.btnSimpan .webix_el_box button,
+.btnSimpan .webix_el_box button:hover,
+.btnSimpan .webix_el_box button:focus {
+  background-color: #be1e2d;
+  color: white;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.btnKembali .webix_el_box button,
+.btnKembali .webix_el_box button:hover,
+.btnKembali .webix_el_box button:focus {
+  background-color: transparent;
+  color: rgb(83, 83, 83);
+  border: 1px solid rgb(61, 61, 61);
+  border-radius: 7px;
+  text-align: center;
+}
+
+.pagerstyle {
+  text-align: right;
+}
+
+
+.interview-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.card-header h3 {
+  font-size: 1.2em;
+}
+
+.card-header .interview-date {
+  font-size: 0.9em;
+}
+
+.card-body {
+  margin-bottom: 15px;
+}
+
+.card-body p {
+  font-size: 1em;
+  margin: 5px 0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-footer button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.card-footer button:hover {
+  background-color: #45a049;
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button[aria-label="Tidak"] {
+  background-color: white !important;  
+  color: #be1e2d !important;          
+  border: 1px solid #be1e2d !important;
+  border-radius: 5px !important;   
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button.confirm {
+  background-color: #be1e2d !important;  
+  color: white !important;              
+  border: 1px solid #be1e2d !important;  
+  border-radius: 5px !important; 
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button[aria-label="Tidak"]:hover {
+  background-color: #be1e2d !important; 
+  color: white !important;               
+  border: 1px solid #be1e2d !important;  
+}
+
+.webix_modal_box .webix_popup_controls .webix_popup_button.confirm:hover {
+  background-color: darkred !important; 
+  border: 1px solid darkred !important; 
+}
+
+.pagerstyle .webix_pager_item,
+.pagerstyle .webix_pager_item:hover,
+.pagerstyle .webix_pager_item:focus {
+  background-color: #be1e2d;
+  color: white;
+}
+
+.back-button {
+  background-color: #be1e2d !important; /* Warna biru seperti contoh */
+  color: white !important;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 4px;
+}
+
+.action-sticky {
+  position: sticky !important;
+  left: 0 !important;
+  background: white;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+

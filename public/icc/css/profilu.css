@@ -1,39 +1,3 @@
-.row-green {
-  background-color: #1bae3e;
-  color: white;
-}
-
-.row-blue {
-  background-color: #be1e2d;
-  color: white;
-}
-
-.row-purple {
-  background-color: #a620a6;
-  color: white;
-}
-
-.row-red {
-  background-color: #ba2b37;
-  color: white;
-}
-
-.row-orange {
-  background-color: #d78232;
-  color: white;
-}
-
-.pagerstyle {
-  text-align: right;
-}
-
-.pagerstyle .webix_pager_item,
-.pagerstyle .webix_pager_item:hover,
-.pagerstyle .webix_pager_item:focus {
-  background-color: #398bf1;
-  color: white;
-}
-
 .btnmodalsave .webix_el_box button,
 .btnmodalsave .webix_el_box button:hover,
 .btnmodalsave .webix_el_box button:focus {
@@ -45,6 +9,11 @@
 
 .title {
   font-size: 20px;
+  border: none;
+  background-color: transparent;
+}
+
+.hide-background {
   border: none;
   background-color: transparent;
 }
@@ -177,6 +146,55 @@
   border-top: 3px solid #be1e2d;
 }
 
+.update .webix_el_box button,
+.update .webix_el_box button:hover,
+.update .webix_el_box button:focus {
+  background-color: #be1e2d;
+  color: white;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.uploadstyle {
+  border: none;
+}
+
+.uploadstyle .webix_template {
+  padding: 0;
+}
+
+.registerForm {
+  border: none;
+  border-radius: 10px;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-container input[type="text"] {
+  width: 100%;
+  padding-right: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.input-container .icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+  font-size: 16px;
+}
+
+.input-container input[type="file"] {
+  display: none;
+}
+
+
 @media screen and (max-width: 768px) {
   .profsec {
     grid-template-columns: 1fr;
@@ -205,5 +223,5 @@
 }
 
 .btnupdown .webix_el_box button .webix_icon {
-  color: #398bf1;
+  color: #be1e2d;
 }

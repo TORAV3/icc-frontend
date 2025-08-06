@@ -1,46 +1,15 @@
-.row-green {
-  background-color: #1bae3e;
-  color: white;
-}
-
-.row-blue {
-  background-color: #be1e2d;
-  color: white;
-}
-
-.row-purple {
-  background-color: #a620a6;
-  color: white;
-}
-
-.row-red {
-  background-color: #ba2b37;
-  color: white;
-}
-
-.row-orange {
-  background-color: #d78232;
-  color: white;
-}
-
-.pagerstyle {
-  text-align: right;
-}
-
-.pagerstyle .webix_pager_item,
-.pagerstyle .webix_pager_item:hover,
-.pagerstyle .webix_pager_item:focus {
-  background-color: #398bf1;
-  color: white;
-}
-
-.btnmodalsave .webix_el_box button,
-.btnmodalsave .webix_el_box button:hover,
-.btnmodalsave .webix_el_box button:focus {
+.update .webix_el_box button,
+.update .webix_el_box button:hover,
+.update .webix_el_box button:focus {
   background-color: #be1e2d;
   color: white;
   border-radius: 7px;
   text-align: center;
+}
+
+.formres {
+  border: none;
+  background-color: transparent;
 }
 
 .title {

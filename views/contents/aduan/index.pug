@@ -1,0 +1,27 @@
+extends ../../layouts/dlayout
+
+block title
+  | Pengaduan
+
+block csslink
+  link(rel='stylesheet' href='/icc/css/aduan.css')
+
+block content
+  .card-header.p-0.border-0
+    .responsive-padding-40-150.bg-primary-600
+      .row.gy-4.align-items-center
+        .col-xl-12.text-center
+          p.text-primary-50 Pengaduan
+          h4.fw-bold.mb-3.text-primary-50 Layanan Aspirasi Dan Pengaduan
+          //- p.text-primary-50 Learn more about the company and the team behind it.
+  .mt-5
+  #index-page
+  
+block script
+  script(src='/icc/js/aduan/index.js')
+  script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js' type='text/javascript')
+
+block js
+  script.
+    const token = "#{token}"
+    const userId = "#{userData.id}"

@@ -1,0 +1,35 @@
+extends ../../layouts/dlayout
+
+block title
+  | Profil TSK
+block csslink
+  link(rel='stylesheet' href='/icc/css/profilp.css')
+
+block content
+  .profsec
+    .profile-picture
+      img#avatarImage.profile-img(src="" alt="Avatar Picture")
+      button.btn.btn-prof(type="button" title="Profile Pic")
+        iconify-icon(icon="solar:camera-linear" width="20" height="20")
+    .profile-details
+      h5#companyNameHeader 
+      p#idHeader.text-muted 
+      p#statusHeader(style="font-size:17px;font-weight:600;") 
+    //- button.btn.btn-share(type="button" title="Share Profile")
+    //-   iconify-icon(icon="solar:share-outline" width="20" height="20")
+  //- .title-details
+  //-   .row.mt-4
+  //-     .col-12
+  //-       p.lastupdate Last Update August 1
+
+  #index-page
+
+block script
+  script(src='/icc/js/profil/tsk.js')
+  script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+
+block js
+  script.
+    const token = "#{token}"
+    const id = "#{id}"
+    const userId = "#{userData.id}"

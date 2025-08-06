@@ -1,0 +1,61 @@
+.webix-html-content {
+    font-size: 18px;
+    color: #444;
+    text-align: left;
+  }
+
+  .webix-html-content ol,
+  .webix-html-content ul {
+    padding-left: 1.5em;
+    margin: 1em 0;
+    list-style-position: outside;
+  }
+
+  .webix-html-content ol {
+    list-style-type: decimal;
+  }
+
+  .webix-html-content ul {
+    list-style-type: disc;
+  }
+
+  .webix-html-content li {
+    margin-bottom: 0.5em;
+    line-height: 1.6;
+  }
+  
+  .webix-html-content li {
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .webix-html-content em,
+  .webix-html-content i {
+    font-style: italic;
+  }
+
+  .webix-html-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+
+  .webix-html-content td,
+  .webix-html-content th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .webix-html-content del {
+    text-decoration: line-through;
+    color: #999;
+  }
+
+  .webix-html-content u {
+    text-decoration: underline;
+  }
+
+  .webix-html-content span {
+    padding: 2px;
+  }

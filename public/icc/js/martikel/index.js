@@ -11,7 +11,38 @@ function loadArtikelData() {
     })
     .then((res) => {
       if (res.data.data.length > 0) {
-        const transformedData = res.data.data.map(function (item) {
+
+        const statusFilter = $$("statusFilter").getValue();
+        const kategoriFilter = $$("kategoriFilter").getValue();
+        const startDate = $$("startDateFilter").getValue();
+        const endDate = $$("endDateFilter").getValue();
+
+        const transformedData = res.data.data
+        
+        .filter((item) => {
+            if (statusFilter !== "all" && item.status !== statusFilter) {
+              return false;
+            }
+
+            if (kategoriFilter !== "all" && item.category !== kategoriFilter) {
+              return false;
+            }
+            
+            const publishDate = new Date(item.publishdate);
+
+            if (startDate && !endDate) {
+              if (publishDate < new Date(startDate)) return false;
+            } else if (!startDate && endDate) {
+              if (publishDate > new Date(endDate)) return false;
+            } else if (startDate && endDate) {
+              if (publishDate < new Date(startDate) || publishDate > new Date(endDate)) {
+                return false;
+              }
+            }
+
+            return true;
+          })
+        .map(function (item) {
           return {
             id: item.id,
             title: item.title,
@@ -82,7 +113,7 @@ function deleteArtikel(id) {
       },
     })
     .then((res) => {
-      webix.message({ type: "success", text: res.data.data });
+      webix.message({ type: "success", text: "Berhasil Menghapus Data Artikel" });
       loadArtikelData();
     })
     .catch((err) => {
@@ -103,6 +134,7 @@ function updateArtikelStatus(artikelId, status) {
     .headers({ Authorization: "Bearer " + token })
     .put(url, requestData)
     .then(function (data) {
+      webix.message({ type: "success", text: "Berhasil Merubah Status Artikel" });
       loadArtikelData();
       countArtikelData();
     })
@@ -133,25 +165,84 @@ var searchForm = {
   },
 };
 
+var startDateFilter = {
+  view: "datepicker",
+  id: "startDateFilter",
+  label : "Dari",
+  labelPosition : "top",
+  format: "%Y-%m-%d",
+  on: {
+    onChange: function () {
+      loadArtikelData();
+    },
+  },
+};
+
+var endDateFilter = {
+  view: "datepicker",
+  id: "endDateFilter",
+  label : "Sampai",
+  labelPosition : "top",
+  format: "%Y-%m-%d",
+  on: {
+    onChange: function () {
+      loadArtikelData();
+    },
+  },
+};
+
+var statusFilter = {
+  view: "combo",
+  id: "statusFilter",
+  label : "Status",
+  labelPosition : "top",
+  value: "all",
+  options: [
+    { id: "all", value: "All" },
+    { id: "published", value: "Published" },
+    { id: "draft", value: "Draft" },
+  ],
+  on: {
+    onChange: function () {
+      loadArtikelData();
+    },
+  },
+};
+
+var kategoriFilter = {
+  view: "combo",
+  id: "kategoriFilter",
+  label : "Kategori",
+  labelPosition : "top",
+  value: "all",
+  options: [
+    { id: "all", value: "All" },
+    { id: "berita", value: "Berita" },
+    { id: "loker", value: "Lowongan Kerja" },
+    { id: "event", value: "Event" },
+  ],
+  on: {
+    onChange: function () {
+      loadArtikelData();
+    },
+  },
+};
+
+
 var toolbar = {
   view: "toolbar",
   css: "toolbar",
   padding: 15,
-  cols: [searchForm],
+  cols: [statusFilter, kategoriFilter, startDateFilter, endDateFilter, {}, searchForm],
 };
 
-var edit =
-  "<span class='webix_icon me-1 editBtn' style='cursor:pointer;'><iconify-icon icon='solar:pen-new-round-linear' style='color:#398bf1;'></iconify-icon></span>";
-var trash =
-  "<span class='webix_icon delBtn' style='cursor:pointer;'><iconify-icon icon='solar:trash-bin-2-linear' style='color:red;'></iconify-icon></span>";
 
 var tabcols = [
-  { id: "id", hidden: true },
   {
     id: "action",
     header: { text: "", css: { "text-align": "center" } },
     css: { "text-align": "center" },
-    width: 80,
+    width: 50,
     template: function () {
       return `
           <span class="webix_icon actionMenu" style="cursor:pointer;">
@@ -160,6 +251,7 @@ var tabcols = [
         `;
     },
   },
+  { id: "id", hidden: true },
   {
     id: "status",
     header: { text: "Status", css: { "text-align": "center" } },
@@ -175,14 +267,13 @@ var tabcols = [
     width: 600,
     sort: "string",
   },
-  { id: "thumbnail", header: "Thumbnail", width: 300, sort: "string" },
   { id: "publishdate", header: "Tanggal Publish", width: 300, sort: "string" },
 ];
 
 webix.ui({
   view: "contextmenu",
   id: "actionMenu",
-  data: ["Edit", "Hapus"],
+  data: ["Edit", "Preview", "Hapus"],
   on: {
     onItemClick: function (id) {
       var context = this.getContext();
@@ -194,15 +285,41 @@ webix.ui({
           window.location.href = `/manajemen/artikel/edit/${rowId}`;
           break;
 
+        case "Preview":
+          // showPreview(rowId);
+          window.open("/artikel/detail/" + rowId, "_blank");
+          // window.open("/artikel/detail/" + rowId, "_blank", "width=1280,height=800");
+
+          // Untuk mobile view
+          const mobileWidth = 390;
+          const mobileHeight = 844;
+
+          // Dapatkan ukuran layar saat ini
+          const screenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
+          const screenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
+          const screenWidth = window.innerWidth;
+          const screenHeight = window.innerHeight;
+
+          // Hitung posisi agar jendela muncul di tengah
+          const left = screenLeft + (screenWidth - mobileWidth) / 2;
+          const top = screenTop + (screenHeight - mobileHeight) / 2;
+
+          window.open(
+              "/artikel/detail/" + rowId,
+              "_blank",
+              `width=${mobileWidth},height=${mobileHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`
+          );
+        break;
+
         case "Hapus":
           webix.confirm({
             title: "Konfirmasi Hapus",
-            ok: "Ya", // Text for the confirm button
-            cancel: "Tidak", // Text for the cancel button
+            ok: "Ya",
+            cancel: "Tidak",
             text: "Apakah anda yakin ingin menghapus artikel ini?",
             callback: function (result) {
               if (result) {
-                deletePeduliSesama(rowId);
+                deleteArtikel(rowId);
               }
             },
           });
@@ -212,14 +329,70 @@ webix.ui({
   },
 });
 
+function showPreview(rowId) {
+  axios
+  .get(`http://localhost:3000/api/icc/artikel/${rowId}`)
+  .then((res) => {
+
+    const article = res.data.data;
+    console.log(article); 
+
+     var thumbnailUrl = article.thumbnailBase64;
+
+     const formatDate = (dateString) => {
+        if (!dateString) return "Unknown Date";
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString("en-US", options);
+      };
+
+    
+    var previewContent = `
+      <div style="max-width: 800px; margin: auto; padding: 20px; text-align: center;">
+        <p style="color: rgba(190, 30, 45, 1); text-transform: uppercase; font-size: 14px; font-weight: bold;">${article.category}</p>
+        <p style="color: rgba(15, 23, 43, 1); font-size: 32px; font-weight: bold; margin-top: 10px;">${article.title}</p>
+        <img src="${thumbnailUrl}" alt="${article.title}" style="width: 100%; height: auto; margin-top: 15px; border-radius: 8px;">
+        <p style="color: rgba(15, 23, 43, 1); font-size: 14px; font-weight: bold; margin-top: 15px;">${formatDate(article.publishdate)}</p>
+        <div style="margin-top: 20px; font-size: 18px; color: #444; text-align: left;">
+          ${article.description}
+        </div>
+      </div>
+    `;
+
+    webix.ui({
+      view: "window",
+      id: "previewWindow",
+      head: "Preview",
+      body: {
+        view: "template",
+        template: previewContent,
+        height: 500,
+        width: 500,
+        scroll: true,
+      },
+      position: "center",
+      modal: true,
+      move: true,
+      close: true,
+    }).show();
+  })
+  .catch((err) => {
+    console.log("Error:", err);
+    webix.message({
+      type: "error",
+      text: err.response?.data?.message || "Error fetching data",
+    });
+  });
+
+}
+
 var table = {
   view: "datatable",
   id: "table",
   columns: tabcols,
   autoheight: true,
+  leftSplit: 1,
   onClick: {
     actionMenu: function (event, id, node) {
-      // Show the context menu near the clicked button
       $$("actionMenu").show(node);
       $$("actionMenu").setContext({ id: id.row }); // Pass the row ID to the menu
     },
@@ -354,7 +527,6 @@ setTimeout(() => {
   let addDataCard = document.getElementById("addDataCard");
   if (addDataCard) {
     addDataCard.addEventListener("click", function () {
-      console.log("Redirecting to /manajemen/artikel/tambah...");
       window.location.href = "/manajemen/artikel/tambah";
     });
   } else {
@@ -386,7 +558,6 @@ webix.ready(function () {
             updateArtikelStatus(rowData.id, "draft");
             break;
           case "Published":
-            // myWin.show();
             updateArtikelStatus(rowData.id, "published");
             break;
           default:
@@ -425,6 +596,7 @@ webix.ready(function () {
   webix.event(window, "resize", function () {
     grid.adjust();
   });
+  
 
   loadArtikelData();
   countArtikelData();

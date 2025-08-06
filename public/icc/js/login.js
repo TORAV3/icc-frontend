@@ -18,22 +18,31 @@ webix.ui({
           minWidth: 280,
         },
         {
-          view: "text",
+          view: "search",
           type: "password",
           name: "password",
           id: "password",
           label: "Password",
           labelPosition: "top",
           required: true,
+          icon:"wxi-eye",
           minWidth: 280,
+          on:{
+            onSearchIconClick:function(e){
+              const input = this.getInputNode();
+              webix.html.removeCss(e.target, "wxi-eye-slash");
+              webix.html.removeCss(e.target, "wxi-eye");
+              if(input.type == "text"){           
+                webix.html.addCss(e.target, "wxi-eye");
+                input.type = "password";
+              } else {
+                webix.html.addCss(e.target, "wxi-eye-slash");
+                input.type = "text";
+              }
+            }
+          }
         },
-        // {
-        //   view: "checkbox",
-        //   labelRight: "Simpan Password",
-        //   labelWidth: 0,
-        //   value: 0,
-        // },
-        { view: "button", value: "Masuk", css: "btnmasuk", click: submit_form },
+        { view: "button", value: "Masuk", css: "btnmasuk", hotkey: "enter", click: submit_form },
         {
           view: "button",
           value: "Daftar",
@@ -42,19 +51,36 @@ webix.ui({
             window.location.href = "/register";
           },
         },
-        // {
-        //   template: `<hr/>`,
-        //   borderless: true,
-        //   height: 10,
-        // },
-        // {
-        //   view: "button",
-        //   value: "Daftar sebagai Perusahaan",
-        //   css: "btndaftar",
-        //   click: function () {
-        //     window.location.href = "/company/form";
-        //   },
-        // },
+        {
+          view: "template",
+          borderless: true,
+          height: 40,
+          template: `
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+              <div style="flex: 1; height: 1px; background-color: #ccc;"></div>
+              <div style="padding: 0 10px; color: #888; font-weight: bold;">OR</div>
+              <div style="flex: 1; height: 1px; background-color: #ccc;"></div>
+            </div>
+          `
+        },
+        {
+          view: "template",
+          css: "btn-social",
+          height: 50,
+          template: `<div class="social-btn" onclick="googleLogin()">
+            <img src="icc/images/google.png" class="icon" />
+            <span>Continue with Google</span>
+          </div>`
+        },
+        {
+          view: "template",
+          css: "btn-social",
+          height: 50,
+          template: `<div class="social-btn" onclick="yahooLogin()">
+            <img src="icc/images/yahoo.png" class="icon" />
+            <span>Continue with Yahoo</span>
+          </div>`
+        }
       ],
     },
   ],
@@ -63,6 +89,7 @@ webix.ui({
     email: webix.rules.isEmail,
   },
 });
+
 
 function submit_form() {
   const form = $$("loginForm");
@@ -73,7 +100,7 @@ function submit_form() {
       .then(function (response) {
         document.cookie = `token=${response.data.data}; path=/; max-age=${
           60 * 60
-        }; Secure; SameSite=Strict`;
+        }; SameSite=Lax`;
         form.clear();
 
         axios
@@ -83,9 +110,9 @@ function submit_form() {
             },
           })
           .then((res) => {
-            webix.message({ type: "success", text: "Login berhasil" });
+            webix.message({ type: "success", text: "Login Berhasil" });
             setTimeout(() => {
-              window.location.href = "/dashboard";
+              window.location.href = "/home";
             }, 1300);
           })
           .catch((err) => {

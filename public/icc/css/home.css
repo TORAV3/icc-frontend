@@ -1,0 +1,880 @@
+.card-hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px #BE1E2D;
+}
+
+.welcome-company-section {
+  background-color: white;
+  height: 500px; /* Fixed height */
+  display: flex;
+  align-items: center;
+}
+
+.hero {
+  width: 100%;
+  height: 90vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  object-position: center;
+  z-index: 0;
+
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(to top, rgba(190, 30, 45, 0.85), rgba(190, 30, 45, 0));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-bottom: 60px;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.hero-description p {
+  font-size: 1.2rem;
+  color: white;
+  line-height: 1.6;
+}
+
+.btn-danger {
+  background-color: #BE1E2D;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #a81624;
+}
+
+.countheader-section {
+  background-color: #BE1E2D;
+  height: 350px; /* Fixed height */
+  display: flex;
+  align-items: center;
+}
+
+.countheader-section .container {
+  max-width: 1100px;
+  height: 100%;
+}
+
+.siapakami-section {
+  background-color: #8F0613;
+  padding: 60px 0;
+  height: 500px;
+}
+
+.siapakami-section img {
+  max-width: 200px;  /* Perbesar ukuran maksimum */
+  width: 100%;       /* Biar tetap responsive */
+  height: auto;
+}
+
+.siapakami-section h4 {
+  font-size: 1.75rem;
+}
+
+.siapakami-section ul {
+  padding-left: 1rem;
+  margin-top: 15px;
+}
+
+.siapakami-section li {
+  margin-bottom: 0.5rem;
+  list-style-type: disc;
+  font-weight: bold;
+}
+
+.siapakami-section a.btn {
+  font-size: 0.9rem;
+  padding: 8px 20px;
+  border-radius: 8px;
+}
+
+.card-komitmen {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  background: white;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #212529; /* warna teks default */
+}
+
+.card-komitmen img.img-top {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-komitmen .card-body {
+  padding: 16px;
+}
+
+/* Hover: ganti background dan teks jadi seperti card-red */
+.card-komitmen:hover {
+  background-color: #BE1E2D;
+  color: white;
+  border-color: transparent;
+}
+
+.card-komitmen:hover .card-title,
+.card-komitmen:hover .card-text {
+  color: white;
+}
+
+.campaign-section {
+  background-color: rgba(255, 255, 255, 1); /* Light background */
+  height: 585px; /* Fixed height */
+  display: flex;
+  align-items: center;
+}
+
+.campaign-section .container {
+  max-width: 1100px;
+  height: 100%; /* Ensures content fills the section */
+}
+
+.campaign-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1c1c1c;
+}
+
+.campaign-section p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 20px;
+}
+
+.campaign-section form input {
+  height: 45px;
+  width: 300px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.campaign-section form button {
+  height: 45px;
+  padding: 0 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.campaign-img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-left: 5rem;
+}
+
+/* Community Section Styling */
+
+.communityh-section {
+  background-color: rgba(255, 255, 255, 1); /* Light pink background */
+}
+
+.communityf-section {
+  background-color: rgba(190, 30, 45, 1); /* Light pink background */
+  min-height: 434px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.communityf-section .container {
+  max-width: 1100px;
+  height: 100%; /* Ensures content fills the section */
+  /* margin-top: 6rem; */
+}
+
+.communityf-section h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 1);
+}
+
+.communityf-section p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Image Styling */
+.communityf-img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.charityh-section {
+  background-color: rgba(255, 255, 255, 1); /* Light pink background */
+  height: 100hv;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.charityh-section .container {
+  max-width: 1100px;
+  height: 100%; /* Ensures content fills the section */
+  margin-top: 5rem;
+}
+
+.charityh-section h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 1);
+}
+
+.charityh-section p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Image Styling */
+.charityh-img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+/* Community Section Styling */
+.charityf-section {
+  background-color: rgba(190, 30, 45, 1); /* Light pink background */
+  height: 495px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.charityf-section .container {
+  max-width: 1100px;
+  height: 100%; /* Ensures content fills the section */
+  margin-top: 5rem;
+}
+
+.charityf-section h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 1);
+}
+
+.charityf-section p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Image Styling */
+.charityf-img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.count-section {
+  background-color: rgba(255, 232, 232, 1);;
+}
+
+/* Artikel Section */
+.artikel-section {
+  background-color: rgba(255, 232, 232, 1);;
+}
+
+/* Featured Article (Big Card) */
+.artikel-card.featured {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Small Article Cards */
+.artikel-card {
+  min-height: 150px;
+  display: flex;
+  align-items: flex-end;
+  padding: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.artikel-content {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.artikel-content h6 {
+  color: #333;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contact-section {
+  background-color: rgba(255, 232, 232, 1); /* Light pink background */
+  height: 100hv;
+}
+
+.divider {
+  width: 100%;
+  height: 2px; /* Adjust thickness */
+  background-color: #be1e2d; /* Red color */
+  margin: 20px 0; /* Adjust spacing */
+}
+
+.divider-white {
+  width: 100%;
+  height: 2px; /* Adjust thickness */
+  background-color: #FFFFFF; /* Red color */
+  margin: 20px 0; /* Adjust spacing */
+}
+
+.layout-contact {
+  border: none;
+  padding: 40px;
+}
+
+.send_contact .webix_el_box button {
+  background-color: #be1e2d;
+  color: white;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.captcha {
+  border: none;
+  background: transparent;
+}
+
+.btn-all-article {
+  width: 25%;
+}
+
+.card {
+  border: none;
+  background: transparent;
+}
+
+.top-card {
+  background: #be1e2d;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+  margin-right: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.top-label {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.top-value {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.simple-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.simple-block {
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.simple-value {
+  font-size: 30px;
+  font-weight: bold;
+  color: #be1e2d;
+}
+
+.simple-separator {
+  height: 1px;
+  width: 40px;
+  background-color: #999;
+  margin: 4px auto;
+}
+
+.simple-label {
+  font-size: 17px;
+  font-weight: bold;
+  color: black;
+}
+
+
+
+.text-desc {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.7;
+  color: #444;
+}
+
+.text-desc-list {
+  max-width: 800px;
+  margin: 1rem auto;
+  padding-left: 1.2rem;
+  list-style-type: none;
+}
+
+.text-desc-list li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.text-desc-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #BE1E2D;
+  font-weight: bold;
+}
+
+
+.testimonial-section {
+  background-color: #8F0613; /* Light pink background */
+  height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-section .container {
+  max-width: 1100px;
+  height: 100%; /* Ensures content fills the section */
+  margin-top: 5rem;
+}
+
+.fitur-list p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.fitur-list .fa-check-circle {
+  font-size: 1rem;
+  margin-top: 4px;
+}
+
+.fitur-list img {
+  margin-top: 3px;
+}
+
+.tantangan-section {
+  min-height: 100vh;
+  background-image: linear-gradient(
+      to right,
+      rgba(190, 30, 45, 0.95) 40%,
+      rgba(190, 30, 45, 0.6) 60%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url("/icc/images/pekerjamigran.png");
+  background-size: cover;
+  background-position: right 40% top 20%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.simple-counter-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  text-align: center;
+  color: #0d1b39; /* atau warna sesuai tema kamu */
+  margin-top: 2rem;
+}
+
+.counter-item {
+  flex: 1;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.counter-number {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #FFFFFF;
+}
+
+.counter-separator {
+  width: 50px;
+  height: 4px;
+  background-color: #FFFFFF; /* biru cerah */
+  margin: 0 auto 10px;
+  border-radius: 2px;
+}
+
+.counter-desc {
+  font-size: 1.1rem;
+  color: #FFFFFF ;
+}
+
+.counter-label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.counter-header {
+  border: none;
+  background: transparent;
+}
+
+#loadingOverlayArtikel {
+  display: none;
+  position: absolute; /* <-- Ganti dari fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#loadingOverlayContact {
+  display: none;
+  position: absolute; /* <-- Ganti dari fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#loadingOverlayCharity {
+  display: none;
+  position: absolute; /* <-- Ganti dari fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #ccc;
+  border-top-color: #d7335b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.counter-content {
+  border: none;
+  background: transparent;
+}
+
+
+.sebaran-section {
+  background-color: #ffff; /* Light pink background */
+}
+
+.sebaran-section .container {
+  max-width: 1100px;
+  height: 100%; /* Ensures content fills the section */
+  margin-top: 5rem;
+}
+
+/* Desktop default */
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 3rem;
+  overflow: visible;
+}
+
+.chart-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.chart-box {
+  flex: 1 1 300px;
+  max-width: 400px;
+  text-align: center;
+  overflow: visible;
+  padding: 1rem;
+}
+
+.chart-box.full {
+  flex: 1 1 100%;
+  max-width: 600px;
+  overflow: visible;
+}
+
+.chart-box canvas {
+  width: 100% !important;
+  height: 300px !important; /* fixed height agar tidak collapse */
+  max-height: 300px;
+}
+
+.chart-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.scroll-container {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+.scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.scroll-container .card {
+  scroll-snap-align: start;
+}
+
+.simple-counter-block {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .chart-container {
+    padding-bottom: 4rem;
+  }
+
+  .chart-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-box {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem 1.5rem;
+  }
+
+  .chart-box.full {
+    max-width: 100%;
+  }
+
+  .chart-box canvas {
+    height: 260px !important;
+  }
+
+  .chart-title {
+    font-size: 1rem;
+  }
+
+  .charity-img {
+    width: 60%;
+    height: auto;
+  }
+
+  .communityf-img {
+    width: 60%;
+    height: auto;
+    margin-top: -45px;
+    margin-bottom: 30px;
+  }
+
+  .campaign-img {
+    width: 60%;
+    height: auto;
+    margin-right: 80px;
+  }
+
+  .campaign-section {
+    background-color: rgba(255, 255, 255, 1); /* Light background */
+    height: 700px; /* Fixed height */
+    display: flex;
+    align-items: center;
+  }
+
+  .charityf-section h2 {
+    margin-top: -40px;
+  }
+
+  .btn-all-article {
+    width: fit-content;
+  }
+
+  .hero-full {
+    height: 80vh; /* Mengurangi tinggi hero section untuk perangkat lebih kecil */
+    padding-top: 50px; /* Sesuaikan padding-top untuk perangkat kecil */
+  }
+
+  .hero-title {
+    font-size: 1.8rem; /* Menyesuaikan ukuran font untuk layar kecil */
+  }
+
+  .hero-description p {
+    font-size: 1rem; /* Menyesuaikan ukuran font untuk layar kecil */
+  }
+
+  .hero-content {
+    max-width: 100%; /* Membuat konten hero section lebih lebar di layar kecil */
+    margin-top: 40px; /* Memberikan lebih banyak ruang */
+  }
+
+  .welcome-company-section {
+    background-color: white;
+    height: 800px; /* Fixed height */
+    display: flex;
+    align-items: center;
+  }
+
+  .siapakami-section {
+    background-color: #8F0613;
+    padding: 60px 0;
+    height: 750px;
+  }
+
+  .siapakami-section img {
+    max-width: 150px;
+    margin-bottom: 20px;  /* Perbesar ukuran maksimum */
+    width: 65%;       /* Biar tetap responsive */
+    height: auto;
+  }
+
+  .siapakami-section h4 {
+    margin-top: 30px;
+  }
+
+  .komitmen-section h4 {
+    margin-bottom: 30px;
+  }
+
+  .about-section h4 {
+    margin-top: 30px;
+  }
+
+  .countheader-section {
+    background-color: #BE1E2D;
+    height: 850px;
+    display: flex;
+    align-items: center;
+  }
+
+  #count-header {
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .simple-counter-block {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .counter-item {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 1.5rem;
+  }
+
+  .layout-contact {
+    border: none;
+    padding: 5px;
+  }
+
+  .testimonial-section {
+    height: 1200px;
+    align-items: center;
+    justify-content: center;
+  }
+}

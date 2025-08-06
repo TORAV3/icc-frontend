@@ -1,0 +1,116 @@
+.card {
+  border-radius: 12px;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.stats {
+  border: none;
+  background: transparent;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 15px;
+  margin-left: 15px;
+  color: rgba(32, 34, 36, 0.6);
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.value {
+  font-size: 25px;
+  margin-top: 5px;
+  margin-left: 15px;
+  color: rgba(32, 34, 36, 1);
+  font-weight: bold;
+}
+
+.icon_stats_first {
+  font-size: 30px;
+  color: rgb(255, 99, 71, 1);
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: rgb(255, 99, 71, 0.3);
+}
+
+.icon_stats_second {
+  font-size: 30px;
+  color: rgb(102, 204, 255, 1);
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: rgb(102, 204, 255, 0.3)
+}
+
+.icon_stats_third {
+  font-size: 30px;
+  color: rgb(0, 204, 102, 1);
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: rgb(0, 204, 102, 0.3);
+}
+
+.icon_stats_fourth{
+  font-size: 30px;
+  color: rgb(255, 102, 178, 1);
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: rgb(255, 102, 178, 0.3);
+}
+
+.icon_stats_fifth{
+  font-size: 30px;
+  color: rgb(255, 153, 51, 1);
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: rgb(255, 153, 51, 0.3);
+}
+
+.icon_stats_sixth{
+  font-size: 30px;
+  color: rgb(204, 153, 255, 1);
+  padding: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: rgb(204, 153, 255, 0.3);
+}
+
+
+.toolbar {
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.header{
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  color: #be1e2d;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

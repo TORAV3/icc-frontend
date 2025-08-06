@@ -1,0 +1,296 @@
+doctype html
+html(lang="en" data-theme="light")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title
+            block title
+        link(rel="icon" type="image/png" href="/icc/images/icc-header.png" sizes="16x16")
+        link(rel="stylesheet" href="/assets/css/remixicon.css")
+        link(rel="stylesheet" href="/assets/css/lib/bootstrap.min.css")
+        link(rel="stylesheet" href="/assets/css/style.css")
+        link(rel="stylesheet" href="/icc/css/layoutlp.css")
+        link(rel="stylesheet" href="https://cdn.webix.com/edge/webix.css" type="text/css")
+
+        block csslink
+        block cssstyle
+    body
+        main.dashboard-main-lp
+            header.navbar-header-lp.bg-white.shadow-sm.py-3
+                .container-fluid
+                    .row.align-items-center.justify-content-between
+                        .col-auto
+                            a(href="/home")
+                                img(src="/icc/images/logoicc.png" alt="Indonesia Care Center Logo" class="logo" style="width: 120px; height: 50px; object-fit: contain; margin-left: 10px;")
+                        .col-auto
+                            div(style="width: 2px; height: 45px; background-color: rgba(190, 30, 45, 1);")
+
+                        .col-auto.d-lg-none
+                            button#mobile-menu-toggle(type="button" class="hamburger-menu")
+                                iconify-icon(icon="bi:list" style="font-size: 28px; color: black;")
+
+                        .col.d-none.d-lg-flex.justify-content-center
+                            nav
+                                ul.nav
+                                    li.nav-item
+                                        a.nav-link.active(href="/home#hero") Home
+                                    li.nav-item
+                                        a.nav-link(href="/home#artikel") Artikel
+                                    if typeof userData !== 'undefined' && userData
+                                        if userData.type === 'peserta'
+                                            li.nav-item
+                                                a.nav-link(href="/home#community") Komunitas
+                                    li.nav-item
+                                        a.nav-link(href="/home#charity") Charity 
+                                    li.nav-item
+                                        a.nav-link(href="/home#contact") Contact
+
+                        .col-auto.d-none.d-lg-flex.align-items-center.gap-4
+                            .search-bar.d-flex.align-items-center.border.rounded.px-2(style="background: rgba(190, 30, 45, 0.2); height: 36px;")
+                                input.form-control.border-0.bg-transparent(type="text" style="width: 260px; height: 100%; font-size: 2  20px;" )
+                                button.btn.btn-link(style="margin-left: 5px;")
+                                    iconify-icon(icon="lucide:search" style="color: rgba(190, 30, 45, 1)")
+                            #suggestionsBox(style="display: none; background: white; border: 1px solid rgba(190, 30, 45, 0.3); max-height: 200px; overflow-y: auto;")
+
+                            if typeof userData !== 'undefined' && userData
+                                div.dropdown
+                                button.d-flex.justify-content-center.align-items-center.rounded-circle(
+                                    type="button",
+                                    data-bs-toggle="dropdown"
+                                )
+                                    img.w-40-px.h-40-px.object-fit-cover.rounded-circle(
+                                        src= userData.type === 'internal' 
+                                        ? '/icc/images/admin.png' 
+                                        : (userData.profilePicBase64 ? userData.profilePicBase64 : '/icc/images/default-avatar.png'),
+                                        alt="image"
+                                    )
+                                div.dropdown-menu.to-top.dropdown-menu-sm
+                                    div.py-12.px-16.radius-8.bg-primary-50.mb-16.d-flex.align-items-center.justify-content-between.gap-2
+                                        div
+                                            if userData.type === 'peserta'
+                                                h6.text-lg.text-primary-light.fw-semibold.mb-2 #{userData.userDetail.fullname}
+                                                span.text-secondary-light.fw-medium.text-sm #{userData.type.toUpperCase()}
+                                            if userData.type === 'tsk' || userData.type === 'kumiai' || userData.type === 'langsung' || userData.type === 'so' || userData.type === 'p3mi'
+                                                h6.text-lg.text-primary-light.fw-semibold.mb-2 #{userData.companyDetail.name}
+                                                span.text-secondary-light.fw-medium.text-sm #{userData.type.toUpperCase()}
+                                            if userData.type === 'internal'
+                                                h6.text-lg.text-primary-light.fw-semibold.mb-2 Admin
+                                                span.text-secondary-light.fw-medium.text-sm #{userData.type.toUpperCase()}
+                                    ul.to-top-list
+                                        if userData.type === 'peserta'
+                                            li
+                                                a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href=`/profil/peserta/${userData.id}`)
+                                                    iconify-icon.icon(
+                                                        icon="solar:user-circle-outline",
+                                                        class="text-xl"
+                                                    )
+                                                    | Profil
+                                        if userData.type === 'tsk' || userData.type === 'kumiai' || userData.type === 'langsung' || userData.type === 'so' || userData.type === 'p3mi'
+                                            li
+                                                a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(
+                                                    href= userData.type === 'tsk' ? `/profil/tsk/${userData.id}` : 
+                                                        userData.type === 'kumiai' ? `/profil/kumiai/${userData.id}` : 
+                                                        userData.type === 'langsung' ? `/profil/langsung/${userData.id}` : 
+                                                        userData.type === 'so' ? `/profil/so/${userData.id}` :
+                                                        userData.type === 'p3mi' ? `/profil/p3mi/${userData.id}` :
+                                                        `/profil/${userData.id}`
+                                                )
+                                                    iconify-icon.icon(
+                                                        icon="solar:user-circle-outline",
+                                                        class="text-xl"
+                                                    )
+                                                    | Profil
+                                        if userData.type === 'tsk' || userData.type === 'kumiai'
+                                            li
+                                                a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href="/dashboard/perusahaan")
+                                                    iconify-icon.icon(
+                                                        icon="solar:home-smile-angle-outline",
+                                                        class="text-xl"
+                                                    )
+                                                    | Dashboard
+                                        if userData.type === 'so' || userData.type === 'p3mi'
+                                            li
+                                                a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href="/dashboard/mitra")
+                                                    iconify-icon.icon(
+                                                        icon="solar:home-smile-angle-outline",
+                                                        class="text-xl"
+                                                    )
+                                                    | Dashboard
+                                        if userData.type === 'peserta'
+                                            li
+                                                a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href="/dashboard/peserta")
+                                                    iconify-icon.icon(
+                                                        icon="solar:home-smile-angle-outline",
+                                                        class="text-xl"
+                                                    )
+                                                    | Dashboard
+                                        if userData.type === 'internal'
+                                            li
+                                                a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href="/dashboard/admin")
+                                                    iconify-icon.icon(
+                                                        icon="solar:home-smile-angle-outline",
+                                                        class="text-xl"
+                                                    )
+                                                    | Dashboard
+                                        li
+                                            a.dropdown-item.text-black.px-0.py-8.hover-bg-transparent.hover-text-danger.d-flex.align-items-center.gap-3(href="javascript:void(0)" id="logoutBtn")
+                                                iconify-icon.icon(
+                                                    icon="lucide:power",
+                                                    class="text-xl"
+                                                )
+                                                | Log Out
+                            else
+                                a.btn.btn-outline-primary-600.px-3.py-1.rounded(href="/register") Registrasi
+                                a.btn.btn-primary-600.px-3.py-1.rounded(href="/login") Masuk
+
+                nav#mobile-nav-menu.mobile-nav.d-lg-none
+                    ul.list-unstyled.px-3.pt-2
+                        li.mb-2
+                            a.text-dark.text-decoration-none.d-block.text-center.py-2(href="/home#hero") Home
+                        li.mb-2
+                            a.text-dark.text-decoration-none.d-block.text-center.py-2(href="/home#artikel") Artikel
+                        if typeof userData !== 'undefined' && userData && userData.type === 'peserta'
+                            li.mb-2
+                                a.text-dark.text-decoration-none.d-block.text-center.py-2(href="/home#community") Komunitas
+                        li.mb-2
+                            a.text-dark.text-decoration-none.d-block.text-center.py-2(href="/home#charity") Charity
+                        li.mb-2
+                            a.text-dark.text-decoration-none.d-block.text-center.py-2(href="/home#contact") Contact
+
+                    hr.my-3
+
+                    if typeof userData !== 'undefined' && userData
+                        .d-flex.flex-column.align-items-center.px-3
+                        if userData.type === 'peserta'
+                            a.d-flex.justify-content-center.align-items-center.gap-2.text-dark.text-decoration-none.py-2.w-100(href=`/profil/peserta/${userData.id}`)
+                                iconify-icon(icon="solar:user-circle-outline" style="font-size: 20px;")
+                                span Profil
+                        else if userData.type === 'tsk'
+                            a.d-flex.justify-content-center.align-items-center.gap-2.text-dark.text-decoration-none.py-2.w-100(href=`/profil/tsk/${userData.id}`)
+                                iconify-icon(icon="solar:user-circle-outline" style="font-size: 20px;")
+                                span Profil
+                        else if userData.type === 'kumiai'
+                            a.d-flex.justify-content-center.align-items-center.gap-2.text-dark.text-decoration-none.py-2.w-100(href=`/profil/kumiai/${userData.id}`)
+                                iconify-icon(icon="solar:user-circle-outline" style="font-size: 20px;")
+                                span Profil
+                        else if userData.type === 'langsung'
+                            a.d-flex.justify-content-center.align-items-center.gap-2.text-dark.text-decoration-none.py-2.w-100(href=`/profil/langsung/${userData.id}`)
+                                iconify-icon(icon="solar:user-circle-outline" style="font-size: 20px;")
+                                span Profil
+                        else if userData.type === 'so'
+                            a.d-flex.justify-content-center.align-items-center.gap-2.text-dark.text-decoration-none.py-2.w-100(href=`/profil/so/${userData.id}`)
+                                iconify-icon(icon="solar:user-circle-outline" style="font-size: 20px;")
+                                span Profil
+                        else if userData.type === 'p3mi'
+                            a.d-flex.justify-content-center.align-items-center.gap-2.text-dark.text-decoration-none.py-2.w-100(href=`/profil/p3mi/${userData.id}`)
+                                iconify-icon(icon="solar:user-circle-outline" style="font-size: 20px;")
+                                span Profil
+                        else if userData.type === 'internal'
+                            a.d-flex.justify-content-center.align-items-center.gap-2.text-dark.text-decoration-none.py-2.w-100.mt-3(href="/dashboard/admin")
+                                iconify-icon(icon="solar:home-smile-angle-outline" style="font-size: 20px;")
+                                span Dashboard
+
+                        if userData.type === 'tsk' || userData.type === 'kumiai'
+                            a.d-flex.justify-content-center.align-items-center.gap-2.text-dark.text-decoration-none.py-2.w-100.mt-3(href="/dashboard/perusahaan")
+                                iconify-icon(icon="solar:home-smile-angle-outline" style="font-size: 20px;")
+                                span Dashboard
+                        else if userData.type === 'so' || userData.type === 'p3mi'
+                            a.d-flex.justify-content-center.align-items-center.gap-2.text-dark.text-decoration-none.py-2.w-100.mt-3(href="/dashboard/mitra")
+                                iconify-icon(icon="solar:home-smile-angle-outline" style="font-size: 20px;")
+                                span Dashboard
+                        else if userData.type === 'peserta'
+                            a.d-flex.justify-content-center.align-items-center.gap-2.text-dark.text-decoration-none.py-2.w-100.mt-3(href="/dashboard/peserta")
+                                iconify-icon(icon="solar:home-smile-angle-outline" style="font-size: 20px;")
+                                span Dashboard
+
+                        a.d-flex.justify-content-center.align-items-center.gap-2.text-danger.text-decoration-none.py-2.w-100.mt-3(href="javascript:void(0)" id="logoutBtnMobile")
+                            iconify-icon(icon="lucide:power" style="font-size: 20px;")
+                            span Log Out
+                    else
+                        .d-flex.flex-column.px-3.gap-2.mt-3
+                            a.btn.btn-outline-primary-600.w-100(href="/register") Registrasi
+                            a.btn.btn-primary-600.w-100(href="/login") Masuk
+
+            .dashboard-main-body-lp
+                block content
+
+            if typeof userData !== 'undefined' && userData
+                if userData.type === 'peserta'
+                    a.floating-button(href="javascript:void(0)" onclick="showPanicPopup()")
+                        img(src="/icc/images/panic.png" alt="Panic Button" class="panic-img")
+                    div#panicPopup
+                    
+            footer.d-footer.py5
+                .container
+                    //- .row.justify-content-between.align-items-center.bg-primary-600.text-white.rounded-4(style="padding: 35px; margin-top: 2rem;")
+                    //-     .col-md-7
+                    //-         h5.text-uppercase.fw-bold.text-white Subscribe to Get Updated
+                    //-         p.mb-0 Lorem ipsum dolor sit amet consectetur. Mi nibh venenatis in suscipit turpis.
+                    //-     .col-md-5.d-flex.align-items-center
+                    //-         input.form-control(type="email" placeholder="Enter your email" style="width:60%; height: 3rem; border-radius: 5px; margin-right: 15px;")
+                    //-         button.btn.btn-light.text-danger(style="height: 3rem;") Subscribe Now
+
+                    .row(style="margin-top: 4rem;")
+                        .col-md-5
+                            img(src="/icc/images/logoicc.png" alt="Indonesia Care Center Logo" style="width: 200px; height: auto;")
+                            p(style="margin-top: 1rem; font-size: 13px;") ICC adalah platform digital yang didedikasikan untuk mendukung pekerja migran Indonesia, khususnya peserta program magang dan Specified Skilled Worker (SSW). Kami menyediakan panduan adaptasi budaya, dukungan hukum, layanan kesehatan, serta jaringan komunitas untuk memastikan keberhasilan pekerja migran.
+                            .d-flex.gap-3.mt-3
+                                a(href="#")
+                                    iconify-icon(icon="bi:facebook" class="text-dark text-xl")
+                                a(href="#")
+                                    iconify-icon(icon="bi:instagram" class="text-dark text-xl")
+                                a(href="#")
+                                    iconify-icon(icon="bi:linkedin" class="text-dark text-xl")
+
+                        .col-md-2
+                            ul.list-unstyled
+                                li.mb-2
+                                    a.text-dark(href="/home#hero") Home
+                                li.mb-2.mt-3
+                                    a.text-dark(href="/home#artikel") Artikel
+                                if typeof userData !== 'undefined' && userData
+                                    if userData.type === 'peserta'
+                                        li.mb-2.mt-3
+                                            a.text-dark(href="/home#community") Komunitas
+                                li.mb-2.mt-3
+                                    a.text-dark(href="/home#charity") Charity
+                                li.mb-2.mt-3
+                                    a.text-dark(href="/faq") FAQs
+                        .col-md-2
+                            ul.list-unstyled
+                                li.mb-2
+                                    a.text-dark(href="#") Kebijakan Privasi
+                                li.mb-2.mt-3
+                                    a.text-dark(href="#") Syarat Penggunaan
+                                li.mb-2.mt-3
+                                    a.text-dark(href="#") Blog
+                        .col-md-3
+                            ul.list-unstyled
+                                li.mb-2
+                                    | Email : support@icc-indonesia.com
+                                li.mb-2
+                                    | Hotline : +62 812 8869 6521
+                                li.mb-2
+                                    | Alamat : Shinjuku, Tokyo, Jepang
+
+                    .row.text-center(style="margin-top: 30px;")
+                        .col
+                            hr(style="border: 2px solid rgba(190, 30, 45, 1);")
+                            p(style="margin-top: 25px; font-weight: bold;") © 2025 Indonesia Care Center. Seluruh hak cipta dilindungi.
+
+
+        script(src="/assets/js/lib/jquery-3.7.1.min.js") 
+        script(src="/assets/js/lib/bootstrap.bundle.min.js") 
+        script(src="/assets/js/lib/iconify-icon.min.js") 
+        script(src="https://cdn.webix.com/edge/webix.js" type="text/javascript") 
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" type="text/javascript")
+        script(src="/assets/js/app.js")
+        script(src="/icc/js/panic.js")
+        script(src="/icc/js/logout.js")
+        script(src="/icc/js/layoutlp.js")
+        script.
+            const userData = !{JSON.stringify(userData)};
+
+        block script
+        block js
+        

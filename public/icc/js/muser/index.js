@@ -11,16 +11,30 @@ function loadUserData(status = "all") {
     })
     .then((res) => {
       if (res.data.data.length > 0) {
-        const transformedData = res.data.data.map(function (item) {
+        const programFilter = $$("programFilter").getValue();
+
+        console.log(programFilter);
+
+        const transformedData = res.data.data
+          .filter((item) => {
+            if (programFilter !== "all" && item.userDetail?.programType !== programFilter) {
+              return false;
+            }
+
+            return true;
+          })
+        .map(function (item) {
           return {
             id: item.id,
             email: item.email,
             status: item.status,
-            fullname: item.userDetail.fullname,
-            phone: item.userDetail.phone,
-            program_type: item.userDetail.program_type.toUpperCase(),
+            fullname: item.userDetail?.fullname,
+            phone: item.userDetail?.phone,
+            program_type: item.userDetail?.programType?.toUpperCase(),
+            mitra: item.userDetail?.companyDetail?.name || "",
           };
         });
+        
 
         $$("table").clearAll();
         $$("table").hideOverlay();
@@ -38,6 +52,28 @@ function loadUserData(status = "all") {
     })
     .finally(function () {
       $$("table").hideProgress();
+    });
+}
+
+function loadSOP3MI(type = "all") {
+  axios
+    .get(`http://localhost:3000/api/icc/user/sop3mi?type=${type}`, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      if (res.data.data.length > 0) {
+        window.companyOptions = res.data.data.map((item) => ({
+          id: item.companyDetail.id,
+          value: item.companyDetail.name,
+          type: item.type,
+        }));
+      }
+    })
+    .catch((err) => {
+      webix.message({ type: "error", text: err.response.data.data });
     });
 }
 
@@ -85,6 +121,7 @@ function updateUserStatus(userId, status) {
     .headers({ Authorization: "Bearer " + token })
     .put(url, requestData)
     .then(function (data) {
+      webix.message({ type: "success", text: "Berhasil mengubah Status Peserta!" });
       loadUserData();
       countPesertaData();
     })
@@ -101,7 +138,7 @@ function deleteUser(id) {
       },
     })
     .then((res) => {
-      webix.message({ type: "success", text: res.data.data });
+      webix.message({ type: "success", text: "Berhasil Menghapus Data Peserta!" });
       loadUserData();
       countPesertaData();
     })
@@ -114,6 +151,8 @@ function deleteUser(id) {
 var statusCombo = {
   view: "combo",
   value: "all",
+  label : "Status",
+  labelPosition : "top",
   options: [
     { id: "all", value: "All" },
     { id: "register", value: "Register" },
@@ -152,11 +191,29 @@ var searchForm = {
   },
 };
 
+var programFilter = {
+  view: "combo",
+  id: "programFilter",
+  label : "Program",
+  labelPosition : "top",
+  value: "all",
+  options: [
+    { id: "all", value: "All" },
+    { id: "pmi", value: "PMI" },
+    { id: "magang", value: "Magang" },
+  ],
+  on: {
+    onChange: function () {
+      loadUserData();
+    },
+  },
+};
+
 var toolbar = {
   view: "toolbar",
   css: "toolbar",
   padding: 15,
-  cols: [statusCombo, {}, searchForm],
+  cols: [statusCombo, programFilter, {}, {}, searchForm],
 };
 
 var detail =
@@ -182,6 +239,7 @@ var tabcols = [
   { id: "fullname", header: "Nama Lengkap", width: 200, sort: "string" },
   { id: "phone", header: "No. Handphone", width: 200, sort: "string" },
   { id: "program_type", header: "Program", width: 200, sort: "string" },
+  { id: "mitra", header: "Mitra", width: 200, sort: "string" },
   { id: "email", header: "Email", width: 240, sort: "string", fillspace: true },
   {
     id: "status",
@@ -192,19 +250,109 @@ var tabcols = [
   },
 ];
 
+function showPerusahaan(rowId, rowProgram) {
+
+  if ($$("perusahaanModal")) {
+    $$("perusahaanModal").show();
+    return;
+  }
+
+  if (!window.companyOptions) {
+    webix.message({ type: "error", text: "Company data not loaded yet." });
+    return;
+  }
+
+  // let filteredCompanies = [];
+  // if (rowProgram === "MAGANG") {
+  //   filteredCompanies = window.companyOptions.filter(item => item.type === "so");
+  // } else if (rowProgram === "PMI") {
+  //   filteredCompanies = window.companyOptions.filter(item => item.type === "p3mi");
+  // } else {
+  //   filteredCompanies = window.companyOptions;
+  // }
+
+  var perusahaanModal = webix.ui({
+    view: "window",
+    id: "perusahaanModal",
+    width: 400,
+    height: 200,
+    head: "Mitra",
+    position: "center",
+    body: {
+      view: "form",
+      elements: [
+        {
+          view: "combo",
+          label: "Pilih",
+          name: "company",
+          options: companyOptions,
+          required: true,
+        },
+        {
+          rows: [
+            {
+              view: "button",
+              value: "Kirim",
+              align: "center",
+              click: function () {
+                var formValues = $$("perusahaanModal").getBody().getValues();
+                console.log(formValues);
+                var selectedCompanyId = formValues.company;
+
+                if (selectedCompanyId) {
+                    axios
+                      .put(`http://localhost:3000/api/icc/user/peserta/edit/mitra/${rowId}`, {
+                        mitraId: selectedCompanyId,
+                      }, {
+                        headers: {
+                          Authorization: "Bearer " + token,
+                        }
+                      })
+                      .then(response => {
+                        webix.message({ type: "success", text: "Berhasil Memilih Mitra!" });
+                        $$("perusahaanModal").close();
+                        loadUserData();
+                      })
+                      .catch(error => {
+                        webix.message({ type: "error", text: "Error updating mitraId" });
+                        console.log(error);
+                      });
+                } else {
+                  webix.message({ type: "error", text: "Silahkan pilih mitra." });
+                }
+              },
+            },
+          ],
+        },
+      ],
+    },
+    modal: true,
+    close: true,
+    hidden: true,
+  });
+
+  perusahaanModal.show();
+}
+
+
 webix.ui({
   view: "contextmenu",
   id: "actionMenu",
-  data: ["Detail", "Hapus"],
+  data: ["Detail", "Hapus", "Mitra"],
   on: {
     onItemClick: function (id) {
       var context = this.getContext();
       var rowId = context.id;
+      var rowProgram = context.program_type;
       var action = this.getItem(id).value;
 
       switch (action) {
         case "Detail":
-          window.location.href = `/manajemen-peserta/detail/${rowId}`;
+          window.location.href = `/profil/peserta/detail/${rowId}`;
+          break;
+
+        case "Mitra":
+          showPerusahaan(rowId, rowProgram);
           break;
 
         case "Hapus":
@@ -212,7 +360,7 @@ webix.ui({
             title: "Konfirmasi Hapus",
             ok: "Ya", // Text for the confirm button
             cancel: "Tidak", // Text for the cancel button
-            text: "Apakah anda yakin ingin menghapus user ini?",
+            text: "Apakah anda yakin ingin menghapus peserta ini?",
             callback: function (result) {
               if (result) {
                 deleteUser(rowId);
@@ -232,8 +380,13 @@ var table = {
   autoheight: true,
   onClick: {
     actionMenu: function (event, id, node) {
+      var rowData = $$("table").getItem(id);
+      
       $$("actionMenu").show(node);
-      $$("actionMenu").setContext({ id: id.row });
+      $$("actionMenu").setContext({ 
+        id: id.row, 
+        program_type: rowData.program_type
+      });
     },
   },
   scheme: {
@@ -446,5 +599,6 @@ webix.ready(function () {
   });
 
   loadUserData();
+  loadSOP3MI();
   countPesertaData();
 });

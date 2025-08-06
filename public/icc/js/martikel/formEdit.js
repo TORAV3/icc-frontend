@@ -8,13 +8,20 @@ function loadArtikelDetailData() {
     .then((res) => {
       $$("title").setValue(res.data.data.title);
       $$("category").setValue(res.data.data.category);
+
       if (res.data.data.publishdate) {
         const formattedDate = new Date(res.data.data.publishdate)
           .toISOString()
           .split("T")[0];
         $$("publishdate").setValue(formattedDate);
       }
-      $$("description").setValue(res.data.data.description);
+
+      const checkEditorReady = setInterval(() => {
+        if (window.quillEditor) {
+          window.quillEditor.root.innerHTML = res.data.data.description || "";
+          clearInterval(checkEditorReady);
+        }
+      }, 100);
 
       if (res.data.data.thumbnail && res.data.data.thumbnailBase64) {
         const videoURL = res.data.data.thumbnailBase64;
@@ -30,6 +37,7 @@ function loadArtikelDetailData() {
       webix.message({ type: "error", text: err.response.data.data });
     });
 }
+
 
 var form = {
   view: "form",
@@ -75,7 +83,7 @@ var form = {
                       minWidth: 300,
                       options: [
                         { id: "berita", value: "Berita" },
-                        { id: "loker", value: "Lowongan Kerja" },
+                        { id: "informasi", value: "Informasi" },
                         { id: "event", value: "Event" },
                       ],
                     },
@@ -123,19 +131,30 @@ var form = {
               label:
                 "<span>Deskripsi<span class='text-danger ms-1'> *</span></span>",
             },
-            {
-              responsive: "row2",
-              cols: [
-                {
-                  view: "ckeditor5",
-                  name: "description", // Ensure this matches in `rules`
-                  id: "description",
-                  required: true,
-                  minWidth: 300,
-                  minHeight: 400,
+        {
+                view: "template",
+                id: "editorContainer",
+                template: `<div id="quill-editor" style="height:300px"></div>`,
+                height: 400,
+                on: {
+                  onAfterRender: function () {
+                    if (!window.quillEditor) {
+                      window.quillEditor = new Quill("#quill-editor", {
+                        theme: "snow",
+                        modules: {
+                          toolbar: [
+                            [{ header: [1, 2, false] }],
+                            ["bold", "italic", "underline"],
+                            ["image", "code-block"],
+                            [{ list: "ordered" }, { list: "bullet" }],
+                            ["clean"],
+                          ],
+                        },
+                      });
+                    }
+                  },
                 },
-              ],
-            },
+              },
           ],
         },
         {
@@ -247,9 +266,9 @@ var form = {
     title: webix.rules.isNotEmpty,
     category: webix.rules.isNotEmpty,
     publishdate: webix.rules.isNotEmpty,
-    description: function (value) {
-      return value.trim() !== "";
-    },
+    // description: function (value) {
+    //   return value.trim() !== "";
+    // },
   },
 };
 
@@ -260,7 +279,18 @@ function submit_form() {
     webix.message({ type: "error", text: "Harap isi semua kolom yang wajib!" });
     return;
   }
+  
+  // Get HTML from Quill
+  const deskripsi = window.quillEditor.root.innerHTML;
+
+  if (!deskripsi || deskripsi.trim() === "" || deskripsi === "<p><br></p>") {
+    webix.message({ type: "error", text: "Deskripsi tidak boleh kosong!" });
+    return;
+  }
+
   var formData = form.getValues();
+  formData.description = deskripsi;
+
   axios
     .put(`http://localhost:3000/api/icc/artikel/edit/${id}`, formData, {
       headers: {
@@ -271,7 +301,7 @@ function submit_form() {
       webix.message({ type: "success", text: response.data.data });
       setTimeout(() => {
         window.location.href = "/manajemen/artikel";
-      }, 1300);
+      }, 1000);
     })
     .catch(function (error) {
       webix.message({ type: "error", text: error.response.data.data });

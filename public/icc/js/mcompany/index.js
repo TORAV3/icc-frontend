@@ -11,13 +11,25 @@ function loadPerusahaanData(status = "all") {
     })
     .then((res) => {
       if (res.data.data.length > 0) {
-        const transformedData = res.data.data.map(function (item) {
+        const typeFilter = $$("typeFilter").getValue();
+
+        const transformedData = res.data.data
+        .filter((item) => {
+            if (typeFilter !== "all" && item.type !== typeFilter) {
+              return false;
+            }
+
+            return true;
+          })
+        
+        .map(function (item) {
           return {
             id: item.id,
             email: item.email,
             status: item.activeStatus,
-            name_company: item.companyDetail.name_company,
-            address_company: item.companyDetail.address_company,
+            type: item.type.toUpperCase(),
+            name: item.companyDetail.name,
+            address: item.companyDetail.address,
           };
         });
 
@@ -93,13 +105,13 @@ function changeStatus(id, status) {
 
 function deleteUser(id) {
   axios
-    .delete(`http://localhost:3000/api/icc/user/perusahaan/delete/${id}`, {
+    .delete(`http://localhost:3000/api/icc/user/internal/delete/${id}`, {
       headers: {
         Authorization: "Bearer " + token,
       },
     })
     .then((res) => {
-      webix.message({ type: "success", text: res.data.data });
+      webix.message({ type: "success", text: "Berhasil Menghapus Data Perusahaan!" });
       loadPerusahaanData();
       countPerusahaanData();
     })
@@ -112,6 +124,8 @@ function deleteUser(id) {
 var statusCombo = {
   view: "combo",
   value: "all",
+  label : "Status",
+  labelPosition : "top",
   options: [
     { id: "all", value: "All" },
     { id: "0", value: "Inactive" },
@@ -149,11 +163,33 @@ var searchForm = {
   },
 };
 
+var typeFilter = {
+  view: "combo",
+  id: "typeFilter",
+  label : "Tipe Perusahaan",
+  labelPosition : "top",
+  value: "all",
+  options: [
+    { id: "all", value: "All" },
+    { id: "so", value: "SO" },
+    { id: "p3mi", value: "P3MI" },
+    { id: "tsk", value: "TSK" },
+    { id: "kumiai", value: "KUMIAI" },
+    { id: "langsung", value: "Langsung" },
+  ],
+  on: {
+    onChange: function () {
+      loadPerusahaanData();
+    },
+  },
+};
+
+
 var toolbar = {
   view: "toolbar",
   css: "toolbar",
   padding: 15,
-  cols: [statusCombo, {}, searchForm],
+  cols: [statusCombo, typeFilter, {}, {}, searchForm],
 };
 
 var stats = {
@@ -229,9 +265,66 @@ var stats = {
       css: "stats",
       data: { inactive: 0 },
     },
-    {},
+    {
+      rows: [
+        {
+          template:
+            "<div class='card new' id='createSO'>" +
+            "<div class='card-content'>" +
+            "<div class='text-new'>" +
+            "<div class='title-new'>Registrasi SO</div>" +
+            "</div>" +
+            "<div class='icon_stats-new'>" +
+            "<iconify-icon icon='solar:clipboard-add-outline'></iconify-icon>" +
+            "</div>" +
+            "</div>" +
+            "</div>",
+          autoheight: true,
+          css: "stats",
+          click: function () {
+            window.location.href = "/company/form/so";
+          },
+        },
+        {
+          template:
+            "<div class='card new' id='createP3MI'>" +
+            "<div class='card-content'>" +
+            "<div class='text-new'>" +
+            "<div class='title-new'>Registrasi P3MI</div>" +
+            "</div>" +
+            "<div class='icon_stats-new'>" +
+            "<iconify-icon icon='solar:clipboard-add-outline'></iconify-icon>" +
+            "</div>" +
+            "</div>" +
+            "</div>",
+          autoheight: true,
+          css: "stats",
+          click: function () {
+            window.location.href = "/company/form/p3mi";
+          },
+        },
+      ],
+    },
   ],
 };
+
+setTimeout(() => {
+  let createSO = document.getElementById("createSO");
+  if (createSO) {
+    createSO.addEventListener("click", function () {
+      window.location.href = "/company/form/so";
+    });
+  }
+}, 500);
+
+setTimeout(() => {
+  let createP3MI = document.getElementById("createP3MI");
+  if (createP3MI) {
+    createP3MI.addEventListener("click", function () {
+      window.location.href = "/company/form/p3mi";
+    });
+  }
+}, 500);
 
 var edit =
   "<span class='webix_icon me-1 editBtn' style='cursor:pointer;'><iconify-icon icon='solar:eye-outline' style='color:#398bf1;'></iconify-icon></span>";
@@ -257,9 +350,10 @@ var tabcols = [
         `;
     },
   },
-  { id: "name_company", header: "Nama Perusahaan", width: 200, sort: "string" },
+  { id: "name", header: "Nama Perusahaan", width: 200, sort: "string" },
+  { id: "type", header: "Tipe Perusahaan", width: 200, sort: "string" },
   {
-    id: "address_company",
+    id: "address",
     header: "Alamat Perusahaan",
     width: 300,
     sort: "string",
@@ -289,10 +383,11 @@ webix.ui({
       var context = this.getContext();
       var rowId = context.id;
       var action = this.getItem(id).value;
+      var type = context.type.toLowerCase();
 
       switch (action) {
         case "Detail":
-          window.location.href = `/manajemen-perusahaan/detail/${rowId}`;
+          window.location.href = `/profil/detail/${type}/${rowId}`;
           break;
         case "Active":
           changeStatus(rowId, "1");
@@ -303,9 +398,9 @@ webix.ui({
         case "Hapus":
           webix.confirm({
             title: "Konfirmasi Hapus",
-            ok: "Ya", // Text for the confirm button
-            cancel: "Tidak", // Text for the cancel button
-            text: "Apakah anda yakin ingin menghapus user ini?",
+            ok: "Ya",
+            cancel: "Tidak",
+            text: "Apakah anda yakin ingin menghapus perusahaan ini?",
             callback: function (result) {
               if (result) {
                 deleteUser(rowId);
@@ -325,8 +420,9 @@ var table = {
   autoheight: true,
   onClick: {
     actionMenu: function (event, id, node) {
+      var rowData = $$("table").getItem(id.row);
       $$("actionMenu").show(node);
-      $$("actionMenu").setContext({ id: id.row });
+      $$("actionMenu").setContext({ id: id.row, type: rowData.type });
     },
   },
   scheme: {
@@ -361,7 +457,7 @@ webix.ready(function () {
   grid = webix.ui({
     container: "index-page",
     margin: 10,
-    rows: [stats, toolbar, datatable],
+    rows: [stats, toolbar,  datatable],
   });
 
   $$("table").registerFilter(
